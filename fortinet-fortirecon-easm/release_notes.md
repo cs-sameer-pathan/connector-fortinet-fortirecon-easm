@@ -1,0 +1,28 @@
+#### What's Improved
+- Added following actions
+  - Get Exposed Services
+  - Get Cloud Integrations
+  - Get FortiGate Integrations
+  - Get Security Insights
+  - Get Archived Issue Comments
+  - Get Issue Comments
+  - Get Tags
+  - Get Tag Details
+  - Get Groups
+  - Get Group Details
+- Added `Get Report Link` parameter in `Get Report` action.
+- Added new input parameters to the following action:
+  - Get Scan Statistics
+  - Generate Report
+  - Get Archived Assets
+  - Get Archived Issues
+  - Get Issue Summary
+  - Get Issues Discovered
+  - Get Asset ASNs
+  - Get Domains
+  - Get Prefixes
+  - Get IPs
+  - Get Subdomains
+  - Get Asset Statistics
+  - Get Leaked Credentials
+- Updated output schemas of all actions.

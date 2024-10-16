@@ -1,0 +1,2408 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+      "@type": "WorkflowCollection",
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "e5982529-da92-420a-9e50-4f6bbf11e2bf",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "6d39b1fe-33ac-4ac1-b230-b7a323bfd24e",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "f23f665f-0c1d-47e1-bc2a-bf9446c3f8ff",
+              "@type": "WorkflowStep",
+              "name": "Get Leaked Credentials",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "keyword": "",
+                  "breach_id": "",
+                  "has_password": "",
+                  "start_date": "",
+                  "end_date": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_leaked_credentials",
+                "operationTitle": "Get Leaked Credentials"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of leaked credentials related to the organization ID based on the keyword to search, breach ID, and date-time range you have specified.",
+          "name": "Get Leaked Credentials",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/6d39b1fe-33ac-4ac1-b230-b7a323bfd24e",
+          "routes": [
+            {
+              "uuid": "31f21fc9-b4db-4814-90a4-b6f81c00ea83",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Leaked Credentials",
+              "sourceStep": "/api/3/workflow_steps/6d39b1fe-33ac-4ac1-b230-b7a323bfd24e",
+              "targetStep": "/api/3/workflow_steps/f23f665f-0c1d-47e1-bc2a-bf9446c3f8ff"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "36b029f7-5a0a-4e29-8e1c-5e40428ef9aa",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "76c31646-fe28-4509-a178-0ac6819c9129",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "d0a20e74-b310-4cff-bdd3-90ef96b8e5f8",
+              "@type": "WorkflowStep",
+              "name": "Get Scan Statistics",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "tags_in": "",
+                  "tags_match_all": "",
+                  "groups_in": "",
+                  "groups_match_all": ""
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_scan_statistics",
+                "operationTitle": "Get Scan Statistics"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves statistics related to the EASM scan related to the organization ID specified in the configuration parameters. The response includes a count of the total, online, and newly discovered assets for the current and previous scans.",
+          "name": "Get Scan Statistics",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/76c31646-fe28-4509-a178-0ac6819c9129",
+          "routes": [
+            {
+              "uuid": "b1c68c45-91ba-4438-bf52-6f2953aa5c98",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Scan Statistics",
+              "sourceStep": "/api/3/workflow_steps/76c31646-fe28-4509-a178-0ac6819c9129",
+              "targetStep": "/api/3/workflow_steps/d0a20e74-b310-4cff-bdd3-90ef96b8e5f8"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "e47b4904-3d68-4076-9a27-6535d4fd7ba8",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "1dc8fce2-3089-4d3f-9607-a61e2b5cd6ae",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "0553ff59-ba43-4300-a720-713e553931c5",
+              "@type": "WorkflowStep",
+              "name": "Get Issues Discovered",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "status": "",
+                  "severity": "",
+                  "countries": "",
+                  "bucket_id": "",
+                  "issue_name_identifier": "",
+                  "asset_type": "",
+                  "asset": "",
+                  "search_type": "",
+                  "tags_in": "",
+                  "tags_match_all": "",
+                  "groups_in": "",
+                  "groups_match_all": "",
+                  "after_primary_scan": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_issues_discovered",
+                "operationTitle": "Get Issues Discovered"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of security issues related to assets discovered in the most recent EASM scan based on the filter criteria like issue status, severity, and the country codes (US, IN) you have specified.",
+          "name": "Get Issues Discovered",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/1dc8fce2-3089-4d3f-9607-a61e2b5cd6ae",
+          "routes": [
+            {
+              "uuid": "d2c30aba-1995-447e-8c01-3a3cae1fab86",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Issues Discovered",
+              "sourceStep": "/api/3/workflow_steps/1dc8fce2-3089-4d3f-9607-a61e2b5cd6ae",
+              "targetStep": "/api/3/workflow_steps/0553ff59-ba43-4300-a720-713e553931c5"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "ee9ad393-7277-40c3-bb08-45802fd0af09",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "7b839a7f-4f23-45cf-ae01-1610463a918d",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "5496e539-3b77-43e3-8440-e2888dcad3c0",
+              "@type": "WorkflowStep",
+              "name": "Get Issue By ID",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "issue_id": ""
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_issue_by_id",
+                "operationTitle": "Get Issue By ID"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves details about a specific security issue based on the unique issue ID you have specified.",
+          "name": "Get Issue By ID",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/7b839a7f-4f23-45cf-ae01-1610463a918d",
+          "routes": [
+            {
+              "uuid": "3ba653b8-0466-4fa4-989b-7b982c565837",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Issue By ID",
+              "sourceStep": "/api/3/workflow_steps/7b839a7f-4f23-45cf-ae01-1610463a918d",
+              "targetStep": "/api/3/workflow_steps/5496e539-3b77-43e3-8440-e2888dcad3c0"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "b7622592-eccb-4045-864c-14346b5f1894",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "700f9d2c-e7b7-4ca5-8329-4053c1d4a4e9",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "1bf6b327-2bf0-41df-b10c-f9838ddc4d0d",
+              "@type": "WorkflowStep",
+              "name": "Get Issue Summary",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "tags_in": "",
+                  "tags_match_all": "",
+                  "groups_in": "",
+                  "groups_match_all": "",
+                  "after_primary_scan": ""
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_issue_summary",
+                "operationTitle": "Get Issue Summary"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves the statistics related to security issues discovered in the most recent EASM scan. The response includes a count of the total discovered issues, along with the severity-wise count.",
+          "name": "Get Issue Summary",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/700f9d2c-e7b7-4ca5-8329-4053c1d4a4e9",
+          "routes": [
+            {
+              "uuid": "9e9e31d3-ea8f-485f-8064-f5b3dccea5c0",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Issue Summary",
+              "sourceStep": "/api/3/workflow_steps/700f9d2c-e7b7-4ca5-8329-4053c1d4a4e9",
+              "targetStep": "/api/3/workflow_steps/1bf6b327-2bf0-41df-b10c-f9838ddc4d0d"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "dfd93224-5b87-4b99-848e-06bc996d3530",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "c9029ecd-57b9-400d-8102-85affcb32fee",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "b04f4b8e-b00f-4178-b14d-dccff82e4a61",
+              "@type": "WorkflowStep",
+              "name": "Get Archived Issues",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "status": "",
+                  "asset_type": "",
+                  "asset": "",
+                  "tags_in": "",
+                  "tags_match_all": "",
+                  "groups_in": "",
+                  "groups_match_all": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_archived_issues",
+                "operationTitle": "Get Archived Issues"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of security issues that have been marked as either Risk Accepted or False Positive based on the asset you have specified.",
+          "name": "Get Archived Issues",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/c9029ecd-57b9-400d-8102-85affcb32fee",
+          "routes": [
+            {
+              "uuid": "02311e53-34e8-42dc-9172-b1f9f99eb28e",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Archived Issues",
+              "sourceStep": "/api/3/workflow_steps/c9029ecd-57b9-400d-8102-85affcb32fee",
+              "targetStep": "/api/3/workflow_steps/b04f4b8e-b00f-4178-b14d-dccff82e4a61"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "149ca880-fb9e-4094-b29a-ee87d1910453",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "3e2f6312-e970-4667-a956-22264dc7ddff",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "4587a197-87bd-47a3-bf40-6d2770bb370c",
+              "@type": "WorkflowStep",
+              "name": "Get Archived Assets",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "user_action": "",
+                  "asset_type": "",
+                  "asset": "",
+                  "tags_in": "",
+                  "tags_match_all": "",
+                  "groups_in": "",
+                  "groups_match_all": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_archived_assets",
+                "operationTitle": "Get Archived Assets"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of assets that have been marked as either Risk Accepted or False Positive.",
+          "name": "Get Archived Assets",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/3e2f6312-e970-4667-a956-22264dc7ddff",
+          "routes": [
+            {
+              "uuid": "49871ca7-3ca6-4574-a1a1-22f26c507325",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Archived Assets",
+              "sourceStep": "/api/3/workflow_steps/3e2f6312-e970-4667-a956-22264dc7ddff",
+              "targetStep": "/api/3/workflow_steps/4587a197-87bd-47a3-bf40-6d2770bb370c"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "c42848db-35ca-4947-af57-35a7f3e61cf4",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "6c5ca00c-fd64-4f6c-9061-98b969224279",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "bc00c9d5-1e6c-4e80-a0b2-af8966d7a7b5",
+              "@type": "WorkflowStep",
+              "name": "Get Asset ASNs",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "search_type": "",
+                  "asset": "",
+                  "tags_in": "",
+                  "tags_match_all": "",
+                  "groups_in": "",
+                  "groups_match_all": "",
+                  "after_primary_scan": "",
+                  "discovered_by_fgt_integration": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_asset_asns",
+                "operationTitle": "Get Asset ASNs"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of Autonomous System Numbers (ASNs) discovered in the latest EASM scan based on the asset you have specified.",
+          "name": "Get Asset ASNs",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/6c5ca00c-fd64-4f6c-9061-98b969224279",
+          "routes": [
+            {
+              "uuid": "a910da16-e4ea-4d8d-9c1e-558ca074230e",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Asset ASNs",
+              "sourceStep": "/api/3/workflow_steps/6c5ca00c-fd64-4f6c-9061-98b969224279",
+              "targetStep": "/api/3/workflow_steps/bc00c9d5-1e6c-4e80-a0b2-af8966d7a7b5"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "2160f8e5-1dcf-4837-9c1f-421a5ce0ef0f",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "c5b366c7-fb94-4af9-b9af-fc518a929c37",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "138eec6c-5d86-49ee-ab82-e1c01eabb3c4",
+              "@type": "WorkflowStep",
+              "name": "Get ASNs by Asset ID",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "asset_id": "",
+                  "linked_assets": false
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_asns_by_asset_id",
+                "operationTitle": "Get ASNs by Asset ID"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves details about a specific Autonomous System Number(ASN) based on the asset ID you have specified.",
+          "name": "Get ASNs by Asset ID",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/c5b366c7-fb94-4af9-b9af-fc518a929c37",
+          "routes": [
+            {
+              "uuid": "15b1d512-b195-49f5-a817-ea62791698ba",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get ASNs by Asset ID",
+              "sourceStep": "/api/3/workflow_steps/c5b366c7-fb94-4af9-b9af-fc518a929c37",
+              "targetStep": "/api/3/workflow_steps/138eec6c-5d86-49ee-ab82-e1c01eabb3c4"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "9ff646b1-9e1d-45a8-8e16-6a92cbdd6618",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "c3be29c0-73aa-4901-b2e6-fe13a84cb9b9",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "2cae39c1-0517-47cd-a725-9199f9e3ef24",
+              "@type": "WorkflowStep",
+              "name": "Get Domains",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "ports": "",
+                  "technologies": "",
+                  "asset": "",
+                  "search_type": "",
+                  "tags_in": "",
+                  "tags_match_all": "",
+                  "groups_in": "",
+                  "groups_match_all": "",
+                  "after_primary_scan": "",
+                  "discovered_by_fgt_integration": "",
+                  "is_live": "",
+                  "discovered_by_cloud_integration": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_domains",
+                "operationTitle": "Get Domains"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of domains discovered in the latest EASM scan based on the filter criteria like ports, technologies, and assets you have specified.",
+          "name": "Get Domains",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/c3be29c0-73aa-4901-b2e6-fe13a84cb9b9",
+          "routes": [
+            {
+              "uuid": "27ea7976-549a-4cdf-bf2a-ad7f50694b63",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Domains",
+              "sourceStep": "/api/3/workflow_steps/c3be29c0-73aa-4901-b2e6-fe13a84cb9b9",
+              "targetStep": "/api/3/workflow_steps/2cae39c1-0517-47cd-a725-9199f9e3ef24"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "aa570a08-0105-454d-a106-e899a137e991",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "700758c4-5409-4861-b85d-6d1e00a3185b",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "b4dafd74-9dd7-4804-990f-306534c818a9",
+              "@type": "WorkflowStep",
+              "name": "Get Domain by Asset ID",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "asset_id": "",
+                  "linked_assets": false
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_domain_by_asset_id",
+                "operationTitle": "Get Domain by Asset ID"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves domain details based on the asset ID you have specified.",
+          "name": "Get Domain by Asset ID",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/700758c4-5409-4861-b85d-6d1e00a3185b",
+          "routes": [
+            {
+              "uuid": "3cdfadce-31d0-4b20-87c4-3834544e0818",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Domain by Asset ID",
+              "sourceStep": "/api/3/workflow_steps/700758c4-5409-4861-b85d-6d1e00a3185b",
+              "targetStep": "/api/3/workflow_steps/b4dafd74-9dd7-4804-990f-306534c818a9"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "6c3876ce-25fb-4dd3-a86d-18b4d07774b3",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "6e753d53-b437-45aa-9363-94faf274411e",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "d87ddb38-dcf4-4786-8760-32c67eb14f03",
+              "@type": "WorkflowStep",
+              "name": "Get IPs",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "ports": "",
+                  "countries": "",
+                  "asset": "",
+                  "search_type": "",
+                  "ip_prefix": "",
+                  "version": "",
+                  "tags_in": "",
+                  "tags_match_all": "",
+                  "groups_in": "",
+                  "groups_match_all": "",
+                  "after_primary_scan": "",
+                  "discovered_by_fgt_integration": "",
+                  "is_live": "",
+                  "discovered_by_cloud_integration": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_ips",
+                "operationTitle": "Get IPs"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of IP addresses discovered in the latest EASM scan based on the filter criteria like ports, country codes, and assets you have specified.",
+          "name": "Get IPs",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/6e753d53-b437-45aa-9363-94faf274411e",
+          "routes": [
+            {
+              "uuid": "fdd3c98c-eb7a-4d9c-bc08-7511bd125a5f",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get IPs",
+              "sourceStep": "/api/3/workflow_steps/6e753d53-b437-45aa-9363-94faf274411e",
+              "targetStep": "/api/3/workflow_steps/d87ddb38-dcf4-4786-8760-32c67eb14f03"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "7be8994b-b2ae-4f08-a732-6a80b4b683a7",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "1df839dd-097e-4042-9de5-3756c8731ecb",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "9872f427-4cba-4081-8740-466ebbe65289",
+              "@type": "WorkflowStep",
+              "name": "Get IP by Asset ID",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "asset_id": "",
+                  "linked_assets": false
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_ips_by_asset_id",
+                "operationTitle": "Get IP by Asset ID"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves IP address details based on the asset ID you have specified.",
+          "name": "Get IP by Asset ID",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/1df839dd-097e-4042-9de5-3756c8731ecb",
+          "routes": [
+            {
+              "uuid": "fa0fa8ab-6638-4c91-858a-54c74c184f8f",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get IP by Asset ID",
+              "sourceStep": "/api/3/workflow_steps/1df839dd-097e-4042-9de5-3756c8731ecb",
+              "targetStep": "/api/3/workflow_steps/9872f427-4cba-4081-8740-466ebbe65289"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "d4f617b6-5926-4e4f-b2b9-82b3330a52d5",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "1baaf1ef-2b26-4d13-9ddc-4af6bd50275f",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "a72f367b-056e-4881-af7d-70e34f42818e",
+              "@type": "WorkflowStep",
+              "name": "Get Prefixes",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "asset": "",
+                  "search_type": "",
+                  "asn": "",
+                  "version": "",
+                  "tags_in": "",
+                  "tags_match_all": "",
+                  "groups_in": "",
+                  "groups_match_all": "",
+                  "after_primary_scan": "",
+                  "discovered_by_fgt_integration": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_prefixes",
+                "operationTitle": "Get Prefixes"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of IP prefixes discovered in the latest EASM scan based on the filter criteria like ASN and assets you have specified.",
+          "name": "Get Prefixes",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/1baaf1ef-2b26-4d13-9ddc-4af6bd50275f",
+          "routes": [
+            {
+              "uuid": "bac37b24-32a0-40f8-8283-c027b261917c",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Prefixes",
+              "sourceStep": "/api/3/workflow_steps/1baaf1ef-2b26-4d13-9ddc-4af6bd50275f",
+              "targetStep": "/api/3/workflow_steps/a72f367b-056e-4881-af7d-70e34f42818e"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "dbd73d7d-f5f4-48af-a5c3-c6c641548ac9",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "9092c39b-ded6-4173-b04e-b5b8dfa6c9c1",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "20801e0a-4158-4638-8ae1-adb5ba8b19a7",
+              "@type": "WorkflowStep",
+              "name": "Get Prefixes by Asset ID",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "asset_id": "",
+                  "linked_assets": false
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_prefixes_by_asset_id",
+                "operationTitle": "Get Prefixes by Asset ID"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves details about a specific IP prefix based on the asset ID you have specified.",
+          "name": "Get Prefixes by Asset ID",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/9092c39b-ded6-4173-b04e-b5b8dfa6c9c1",
+          "routes": [
+            {
+              "uuid": "d5c550c1-755d-49d9-aadd-e3b26e6ba795",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Prefixes by Asset ID",
+              "sourceStep": "/api/3/workflow_steps/9092c39b-ded6-4173-b04e-b5b8dfa6c9c1",
+              "targetStep": "/api/3/workflow_steps/20801e0a-4158-4638-8ae1-adb5ba8b19a7"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "166e4c1d-cbc0-4ec1-adeb-47633d0da0d9",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "3ac7c237-44b4-4f16-847e-932388515337",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "0ad2b7c8-857e-48b1-8979-c2dba7846214",
+              "@type": "WorkflowStep",
+              "name": "Get Subdomains",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "ports": "",
+                  "technologies": "",
+                  "domain": "",
+                  "asset": "",
+                  "search_type": "",
+                  "tags_in": "",
+                  "tags_match_all": "",
+                  "groups_in": "",
+                  "groups_match_all": "",
+                  "after_primary_scan": "",
+                  "discovered_by_fgt_integration": "",
+                  "is_live": "",
+                  "discovered_by_cloud_integration": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_subdomains",
+                "operationTitle": "Get Subdomains"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of subdomains discovered in the latest EASM scan based on the filter criteria like ports, technologies, and assets you have specified.",
+          "name": "Get Subdomains",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/3ac7c237-44b4-4f16-847e-932388515337",
+          "routes": [
+            {
+              "uuid": "141095da-79a1-4b4c-af42-adbdb81d30da",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Subdomains",
+              "sourceStep": "/api/3/workflow_steps/3ac7c237-44b4-4f16-847e-932388515337",
+              "targetStep": "/api/3/workflow_steps/0ad2b7c8-857e-48b1-8979-c2dba7846214"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "45e2f702-a83c-4c09-a41e-0a943b00b736",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "7346056e-b966-469a-9d27-7183934e8a57",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "2cf0019e-0179-4933-97e3-0359cc3195aa",
+              "@type": "WorkflowStep",
+              "name": "Get Subdomain by Asset ID",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "asset_id": ""
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_subdomain_by_asset_id",
+                "operationTitle": "Get Subdomain by Asset ID"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves subdomain details based on the asset ID you have specified.",
+          "name": "Get Subdomain by Asset ID",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/7346056e-b966-469a-9d27-7183934e8a57",
+          "routes": [
+            {
+              "uuid": "0f6c925f-0ec4-4728-8fdf-51f12fc1951b",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Subdomain by Asset ID",
+              "sourceStep": "/api/3/workflow_steps/7346056e-b966-469a-9d27-7183934e8a57",
+              "targetStep": "/api/3/workflow_steps/2cf0019e-0179-4933-97e3-0359cc3195aa"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "0c0acfa5-6a96-45cd-b4a1-8b4cd39a5d1c",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "c0af166c-598b-4e66-a5fd-49e7c2a97373",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "7880f2f0-ec38-4274-8bf7-0ee7c16b1ef2",
+              "@type": "WorkflowStep",
+              "name": "Get Asset Statistics",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "ports": "",
+                  "countries": "",
+                  "technologies": "",
+                  "tags_in": "",
+                  "tags_match_all": "",
+                  "groups_in": "",
+                  "groups_match_all": "",
+                  "after_primary_scan": ""
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_asset_statistics",
+                "operationTitle": "Get Asset Statistics"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves the statistics related to assets discovered in the most recent EASM scan. The response includes a count of the total discovered and online assets.",
+          "name": "Get Asset Statistics",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/c0af166c-598b-4e66-a5fd-49e7c2a97373",
+          "routes": [
+            {
+              "uuid": "0021e194-3b4d-4ee3-bb2a-b4cc3911b7dd",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Asset Statistics",
+              "sourceStep": "/api/3/workflow_steps/c0af166c-598b-4e66-a5fd-49e7c2a97373",
+              "targetStep": "/api/3/workflow_steps/7880f2f0-ec38-4274-8bf7-0ee7c16b1ef2"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "dd2c64e4-e1b0-42c1-b4d5-d880cf0e485e",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "9812d267-5be2-497a-b1de-f89b0cfedf70",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "e5763e87-ad0e-45bb-8d3a-f16e1e9c53fb",
+              "@type": "WorkflowStep",
+              "name": "Get Breaches",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "keyword": "",
+                  "has_password": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_breaches",
+                "operationTitle": "Get Breaches"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of credential breaches related to the organization ID based on the keyword to search and other details you have specified.",
+          "name": "Get Breaches",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/9812d267-5be2-497a-b1de-f89b0cfedf70",
+          "routes": [
+            {
+              "uuid": "194625b4-07c9-4cd2-b3b0-96468c7785ec",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Breaches",
+              "sourceStep": "/api/3/workflow_steps/9812d267-5be2-497a-b1de-f89b0cfedf70",
+              "targetStep": "/api/3/workflow_steps/e5763e87-ad0e-45bb-8d3a-f16e1e9c53fb"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "a09e0080-307d-45ef-9ffe-07b586cf831b",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "6f7397da-1928-4d8f-ba55-79bf023ef3fc",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "0d2fa1ac-4891-4469-b7fa-4349c8fae9ac",
+              "@type": "WorkflowStep",
+              "name": "Get Breaches by ID",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "breach_id": ""
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_breaches_by_id",
+                "operationTitle": "Get Breaches by ID"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves details about a specific credential breach based on the breach ID you have specified.",
+          "name": "Get Breaches by ID",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/6f7397da-1928-4d8f-ba55-79bf023ef3fc",
+          "routes": [
+            {
+              "uuid": "248969c3-786b-4cbb-b5af-0023d0c464eb",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Breaches by ID",
+              "sourceStep": "/api/3/workflow_steps/6f7397da-1928-4d8f-ba55-79bf023ef3fc",
+              "targetStep": "/api/3/workflow_steps/0d2fa1ac-4891-4469-b7fa-4349c8fae9ac"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "d3a7b374-05a9-48e6-b747-d1b04971bc49",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "92d6d90a-e3af-4dc3-a823-327fb582e898",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "b7e525ff-26ed-438d-97de-b971da81745f",
+              "@type": "WorkflowStep",
+              "name": "Generate Report",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "tags_in": "",
+                  "tags_match_all": "",
+                  "groups_in": "",
+                  "groups_match_all": ""
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "generate_report",
+                "operationTitle": "Generate Report"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Initiates the report generation for the latest EASM scan.",
+          "name": "Generate Report",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/92d6d90a-e3af-4dc3-a823-327fb582e898",
+          "routes": [
+            {
+              "uuid": "c93dea10-e8fd-4be3-a259-a28213639b5d",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Generate Report",
+              "sourceStep": "/api/3/workflow_steps/92d6d90a-e3af-4dc3-a823-327fb582e898",
+              "targetStep": "/api/3/workflow_steps/b7e525ff-26ed-438d-97de-b971da81745f"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "20ce11cb-9275-40bf-8a84-d7e2a36090ea",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "8963f3ea-0e6a-4530-aca1-86a2ccc980a2",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "2eca3207-8ad8-4671-9b3b-bbbfc9e332db",
+              "@type": "WorkflowStep",
+              "name": "Get Report",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "report_id": "",
+                  "get_link": false
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_report",
+                "operationTitle": "Get Report"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Checks the status of the generated EASM report based on the report ID you have specified. The response contains the s3 URL of the report to download if generated.",
+          "name": "Get Report",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/8963f3ea-0e6a-4530-aca1-86a2ccc980a2",
+          "routes": [
+            {
+              "uuid": "963efaae-10d2-4750-90b8-2fe4c14996bc",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Report",
+              "sourceStep": "/api/3/workflow_steps/8963f3ea-0e6a-4530-aca1-86a2ccc980a2",
+              "targetStep": "/api/3/workflow_steps/2eca3207-8ad8-4671-9b3b-bbbfc9e332db"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "d940eff2-ef91-4487-8a8d-f82bb2e1d488",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "89016d4e-03e0-4008-92f1-35bca1fe1c72",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "97f72896-77e6-471d-8c7c-5f159055bbc6",
+              "@type": "WorkflowStep",
+              "name": "Get Exposed Services",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "asset": "",
+                  "ports": "",
+                  "services": "",
+                  "products": "",
+                  "service_banner": "",
+                  "after_primary_scan": "",
+                  "has_ssl": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_exposed_services",
+                "operationTitle": "Get Exposed Services"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of exposed services in the latest EASM scan based on the filter criteria like asset, ports, services, and products, etc.",
+          "name": "Get Exposed Services",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/89016d4e-03e0-4008-92f1-35bca1fe1c72",
+          "routes": [
+            {
+              "uuid": "a32f4d72-47eb-4ee8-a413-b03ff749d65f",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Exposed Services",
+              "sourceStep": "/api/3/workflow_steps/89016d4e-03e0-4008-92f1-35bca1fe1c72",
+              "targetStep": "/api/3/workflow_steps/97f72896-77e6-471d-8c7c-5f159055bbc6"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "60e6b3e2-37e6-4d2c-b9c5-85e66a458f7d",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "2ac9177e-9d8c-47f6-9bc6-c59bed66e167",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "ceed2ea6-dd78-4ceb-bd87-6f1bf4d713ca",
+              "@type": "WorkflowStep",
+              "name": "Get Cloud Integrations",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "provider": "",
+                  "connection_status": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_cloud_integrations",
+                "operationTitle": "Get Cloud Integrations"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of cloud integrations based on the filter criteria like provider, connection_status.",
+          "name": "Get Cloud Integrations",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/2ac9177e-9d8c-47f6-9bc6-c59bed66e167",
+          "routes": [
+            {
+              "uuid": "5ca1974a-4b87-40d4-8c9e-54ee227a490c",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Cloud Integrations",
+              "sourceStep": "/api/3/workflow_steps/2ac9177e-9d8c-47f6-9bc6-c59bed66e167",
+              "targetStep": "/api/3/workflow_steps/ceed2ea6-dd78-4ceb-bd87-6f1bf4d713ca"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "67b62130-6275-47f2-9903-a2b0abb95bcf",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "52c797b7-675e-4063-8863-a57186adaa75",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "4a36322d-6521-4c83-8c84-e271b1eb4bac",
+              "@type": "WorkflowStep",
+              "name": "Get FortiGate Integrations",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "connection_status": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_fgt_integrations",
+                "operationTitle": "Get FortiGate Integrations"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of FortiGate integrations based on input parameters specified.",
+          "name": "Get FortiGate Integrations",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/52c797b7-675e-4063-8863-a57186adaa75",
+          "routes": [
+            {
+              "uuid": "3c57816c-07e6-4498-b08e-304e8f2d1f74",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get FortiGate Integrations",
+              "sourceStep": "/api/3/workflow_steps/52c797b7-675e-4063-8863-a57186adaa75",
+              "targetStep": "/api/3/workflow_steps/4a36322d-6521-4c83-8c84-e271b1eb4bac"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "6dcccce5-63de-4ead-b76f-fc5442a63a4d",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "8cfe5c8a-5bc6-4270-b088-10a3e5bc4a23",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "b50e79cb-6c8a-4759-af86-5e235b8bf91c",
+              "@type": "WorkflowStep",
+              "name": "Get Security Insights",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "domain": ""
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_security_insights",
+                "operationTitle": "Get Security Insights"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves the security insights on dns configurations for the given domain.",
+          "name": "Get Security Insights",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/8cfe5c8a-5bc6-4270-b088-10a3e5bc4a23",
+          "routes": [
+            {
+              "uuid": "9319330f-5f18-4fbe-a8a1-9e15f85202fa",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Security Insights",
+              "sourceStep": "/api/3/workflow_steps/8cfe5c8a-5bc6-4270-b088-10a3e5bc4a23",
+              "targetStep": "/api/3/workflow_steps/b50e79cb-6c8a-4759-af86-5e235b8bf91c"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "c8835716-2010-4af6-bfa3-fc96beab95d0",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "62962319-5621-45dd-ae4a-f8ee97e09a2b",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "3d38b82c-b5ff-4d12-b6ca-9e73a5d163ce",
+              "@type": "WorkflowStep",
+              "name": "Get Archived Issue Comments",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "issue_id": "",
+                  "comment_type": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_archived_issue_comments",
+                "operationTitle": "Get Archived Issue Comments"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of comments for given archived issue ID.",
+          "name": "Get Archived Issue Comments",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/62962319-5621-45dd-ae4a-f8ee97e09a2b",
+          "routes": [
+            {
+              "uuid": "0a650076-9173-402b-8ac3-680d43aa0fcf",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Archived Issue Comments",
+              "sourceStep": "/api/3/workflow_steps/62962319-5621-45dd-ae4a-f8ee97e09a2b",
+              "targetStep": "/api/3/workflow_steps/3d38b82c-b5ff-4d12-b6ca-9e73a5d163ce"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "24b88f79-6f2c-4f34-855d-ece5a0c04adc",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "0cf962c8-1914-42aa-86e5-a1bac6ad12b7",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "95c2f1a9-7e86-4693-8394-162be974dd35",
+              "@type": "WorkflowStep",
+              "name": "Get Issue Comments",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "issue_id": "",
+                  "comment_type": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_issue_comments",
+                "operationTitle": "Get Issue Comments"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of comments for given issue ID.",
+          "name": "Get Issue Comments",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/0cf962c8-1914-42aa-86e5-a1bac6ad12b7",
+          "routes": [
+            {
+              "uuid": "e9e2cd92-285c-4944-9c94-fc013613cad1",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Issue Comments",
+              "sourceStep": "/api/3/workflow_steps/0cf962c8-1914-42aa-86e5-a1bac6ad12b7",
+              "targetStep": "/api/3/workflow_steps/95c2f1a9-7e86-4693-8394-162be974dd35"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "47f69193-1296-435a-a420-300a8b1eacab",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "412f4f0f-a383-4be3-a022-c7b0352bc892",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "fe0f5be7-8e0f-4403-aa04-e628f88fb78e",
+              "@type": "WorkflowStep",
+              "name": "Get Tags",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "scope": "",
+                  "name": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_tags",
+                "operationTitle": "Get Tags"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of tags based on scope, name and other parameters specified.",
+          "name": "Get Tags",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/412f4f0f-a383-4be3-a022-c7b0352bc892",
+          "routes": [
+            {
+              "uuid": "66b3662b-0ff8-4d9f-90a8-148f1f611a68",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Tags",
+              "sourceStep": "/api/3/workflow_steps/412f4f0f-a383-4be3-a022-c7b0352bc892",
+              "targetStep": "/api/3/workflow_steps/fe0f5be7-8e0f-4403-aa04-e628f88fb78e"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "489f7d7b-443d-464f-9f36-88d23ca1c852",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "c95bd2fe-902a-4003-86ea-31e46288c165",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "0c1de8dd-7e4a-4982-955e-4a8fb7c7955b",
+              "@type": "WorkflowStep",
+              "name": "Get Tag Details",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "tag_id": "",
+                  "linked_assets": false
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_tag_by_id",
+                "operationTitle": "Get Tag Details"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a specific tag details based on tag ID specified.",
+          "name": "Get Tag Details",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/c95bd2fe-902a-4003-86ea-31e46288c165",
+          "routes": [
+            {
+              "uuid": "ad9aee62-e0df-4959-ac2b-e343a2da088d",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Tag Details",
+              "sourceStep": "/api/3/workflow_steps/c95bd2fe-902a-4003-86ea-31e46288c165",
+              "targetStep": "/api/3/workflow_steps/0c1de8dd-7e4a-4982-955e-4a8fb7c7955b"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "0a484eee-b522-4526-82cb-75bfdc8a9851",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "a939e5c8-5389-4aae-8a3f-ee7a88d071eb",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "a5651e1a-9568-470f-89ac-19ebf659e759",
+              "@type": "WorkflowStep",
+              "name": "Get Groups",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "scope": "",
+                  "name": "",
+                  "page": 1,
+                  "size": 10
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_groups",
+                "operationTitle": "Get Groups"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a list of groups based on scope, name and other parameters specified.",
+          "name": "Get Groups",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/a939e5c8-5389-4aae-8a3f-ee7a88d071eb",
+          "routes": [
+            {
+              "uuid": "68813e85-7bb1-4225-9d9a-6562a43dbdb8",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Groups",
+              "sourceStep": "/api/3/workflow_steps/a939e5c8-5389-4aae-8a3f-ee7a88d071eb",
+              "targetStep": "/api/3/workflow_steps/a5651e1a-9568-470f-89ac-19ebf659e759"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "c57b6df4-6a35-42fa-b7d5-2f32e8ff9094",
+          "collection": "/api/3/workflow_collections/518a1627-05dc-4ed5-acb8-15fc9bbc855f",
+          "steps": [
+            {
+              "uuid": "5fa7c5f9-9824-4def-9b33-8d7166342abb",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "290b3035-a619-49db-9ed4-56142fc25ec8",
+              "@type": "WorkflowStep",
+              "name": "Get Group Details",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Fortinet FortiRecon EASM",
+                "config": "",
+                "params": {
+                  "group_id": "",
+                  "linked_assets": false
+                },
+                "version": "1.1.0",
+                "connector": "fortinet-fortirecon-easm",
+                "operation": "get_group_by_id",
+                "operationTitle": "Get Group Details"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieves a specific group details based on group ID specified.",
+          "name": "Get Group Details",
+          "tag": "#Fortinet FortiRecon EASM",
+          "recordTags": [
+            "Fortinet",
+            "fortinet-fortirecon-easm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/5fa7c5f9-9824-4def-9b33-8d7166342abb",
+          "routes": [
+            {
+              "uuid": "3a8dabab-0383-4d9a-9d20-954cf7d5c32b",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Group Details",
+              "sourceStep": "/api/3/workflow_steps/5fa7c5f9-9824-4def-9b33-8d7166342abb",
+              "targetStep": "/api/3/workflow_steps/290b3035-a619-49db-9ed4-56142fc25ec8"
+            }
+          ]
+        }
+      ],
+      "name": "Sample - Fortinet FortiRecon EASM - 1.1.0",
+      "description": "FortiRecon is a Digital Risk Protection Service (DRPS) product that provides an outside-the-network view to the risks posed to your enterprise.",
+      "visible": true,
+      "recordTags": [
+        "Fortinet",
+        "fortinet-fortirecon-easm"
+      ]
+    }
+  ]
+}

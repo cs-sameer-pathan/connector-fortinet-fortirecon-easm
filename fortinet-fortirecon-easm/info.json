@@ -1,0 +1,3718 @@
+{
+  "name": "fortinet-fortirecon-easm",
+  "label": "Fortinet FortiRecon EASM",
+  "description": "FortiRecon is a Digital Risk Protection Service (DRPS) product that provides an outside-the-network view to the risks posed to your enterprise.",
+  "publisher": "Fortinet",
+  "cs_approved": true,
+  "cs_compatible": true,
+  "version": "1.1.0",
+  "category": "Attack Surface Management",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.1.0/fortinet-fortirecon-easm/860/fortinet-fortirecon-easm-v1-1-0",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "name": "server_url",
+        "type": "text",
+        "visible": true,
+        "editable": true,
+        "required": true,
+        "value": "https://api.fortirecon.forticloud.com",
+        "description": "Server name or IP address to which you will connect and perform the automated operations.",
+        "tooltip": "Server name or IP address to which you will connect and perform the automated operations."
+      },
+      {
+        "title": "API Key",
+        "name": "api_key",
+        "type": "password",
+        "visible": true,
+        "editable": true,
+        "required": true,
+        "description": "API key to access the endpoint server to which you connect and perform the automated operations.",
+        "tooltip": "API key to access the endpoint server to which you connect and perform the automated operations."
+      },
+      {
+        "name": "org_id",
+        "title": "Organization ID",
+        "type": "text",
+        "editable": true,
+        "visible": true,
+        "required": true,
+        "description": "The organization ID on which FortiRecon operations are to be performed.",
+        "tooltip": "The organization ID on which FortiRecon operations are to be performed."
+      },
+      {
+        "title": "Verify SSL",
+        "description": "Specifies whether the SSL certificate for the server is to be verified. By default, this option is selected, i.e., set to True.",
+        "tooltip": "Specifies whether the SSL certificate for the server is to be verified or not.",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "value": true
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "get_leaked_credentials",
+      "category": "investigation",
+      "annotation": "get_leaked_credentials",
+      "description": "Retrieves a list of leaked credentials related to the organization ID based on the keyword to search, breach ID, and date-time range you have specified.",
+      "title": "Get Leaked Credentials",
+      "output_schema": {
+        "total": "",
+        "page": "",
+        "size": "",
+        "hits": [
+          {
+            "email": "",
+            "domain": "",
+            "status": "",
+            "added_on": "",
+            "breach_id": "",
+            "breach_date": "",
+            "breach_name": "",
+            "has_password": ""
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "title": "Keyword",
+          "name": "q",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "For example:user@example.com.",
+          "tooltip": "Specify the text to search in email address and breach name. Provided keyword will be searched in these fields: email, breach name, domain",
+          "description": "(Optional) Specify the text to search in email address and breach name. Specified keywords are searched in these fields: email, breach name, and domain. For example, if you specify user@example.com, the response filters out results and fetches credentials exposed for user@example.com."
+        },
+        {
+          "title": "Breach ID",
+          "name": "breach_id",
+          "type": "integer",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "e.g. 1261",
+          "tooltip": "Specify the breach ID to filter the leaked credentials received.",
+          "description": "(Optional) Specify the breach ID to filter the leaked credentials received."
+        },
+        {
+          "title": "Email ID",
+          "name": "email",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the email ID to filter the leaked credentials received.",
+          "description": "(Optional) Specify the email ID to filter the leaked credentials retrieved."
+        },
+        {
+          "title": "Domain",
+          "name": "domain",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the domain to filter the leaked credentials received.",
+          "description": "(Optional) Specify the domain to filter the leaked credentials retrieved."
+        },
+        {
+          "title": "Status",
+          "name": "status",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "tooltip": "Specify the status to filter the leaked credentials received.",
+          "description": "(Optional) Specify the status to filter the leaked credentials retrieved. You can choose from ACTIVE, RESOLVED",
+          "options": [
+            "ACTIVE",
+            "RESOLVED"
+          ]
+        },
+        {
+          "name": "has_password",
+          "title": "Has Password",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify whether to filter the leaked credential list based on whether the credentials contain passwords.",
+          "description": "(Optional) Specify whether to filter the leaked credential list based on whether the credentials contain passwords. You can choose from True, False",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "start_date",
+          "title": "Start Date",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the start date to filter the credential leak discovery date. Default is last 6 months.",
+          "description": "(Optional) Specify the start date to filter the credential leak discovery date. Default is last 6 months."
+        },
+        {
+          "name": "end_date",
+          "title": "End Date",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the end date to filter the credential leak discovery date. The default is the current day's date.",
+          "description": "(Optional) Specify the end date to filter the credential leak discovery date. The default is the current day's date."
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "get_scan_statistics",
+      "title": "Get Scan Statistics",
+      "annotation": "get_scan_statistics",
+      "description": "Retrieves statistics related to the EASM scan related to the organization ID specified in the configuration parameters. The response includes a count of the total, online, and newly discovered assets for the current and previous scans.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "current_scan": {
+          "assets": {
+            "disappeared": {
+              "asn": "",
+              "domain": "",
+              "ip_address": "",
+              "ip_block": "",
+              "sub_domain": ""
+            },
+            "live": "",
+            "newly_discovered": {
+              "asn": "",
+              "domain": "",
+              "ip_address": "",
+              "ip_block": "",
+              "sub_domain": ""
+            },
+            "total": ""
+          },
+          "completed_ts": ""
+        },
+        "previous_scan": {
+          "assets": {
+            "live": "",
+            "total": ""
+          },
+          "completed_ts": ""
+        }
+      },
+      "parameters": [
+        {
+          "title": "Tags In (Match Any)",
+          "name": "tags_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches any of the specified tags, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches any of the specified tags, operating as an 'OR filter'."
+        },
+        {
+          "title": "Tags In (Match All)",
+          "name": "tags_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'."
+        },
+        {
+          "title": "Groups In (Match Any)",
+          "name": "groups_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'."
+        },
+        {
+          "title": "Groups In (Match All)",
+          "name": "groups_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'."
+        }
+      ]
+    },
+    {
+      "operation": "get_issues_discovered",
+      "title": "Get Issues Discovered",
+      "annotation": "get_issues_discovered",
+      "description": "Retrieves a list of security issues related to assets discovered in the most recent EASM scan based on the filter criteria like issue status, severity, and the country codes (US, IN) you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "hits": [
+          {
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "id": "",
+            "issue_name": "",
+            "asset": "",
+            "asset_type": "",
+            "country": "",
+            "severity": "",
+            "port": "",
+            "bucket": "",
+            "status": "",
+            "user_name": "",
+            "issue_name_identifier": "",
+            "bucket_id": ""
+          }
+        ],
+        "page": "",
+        "size": "",
+        "total": ""
+      },
+      "parameters": [
+        {
+          "name": "status",
+          "title": "Status",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select the status to filter the results.",
+          "description": "(Optional) Select the status to filter the results. You can choose from the following options: Active, Resolved, Risk Accepted, False Positive",
+          "options": [
+            "Active",
+            "Resolved",
+            "Risk Accepted",
+            "False Positive"
+          ]
+        },
+        {
+          "name": "severity",
+          "title": "Severity",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select the severity to filter the results.",
+          "description": "(Optional) Select the severity to filter the results. You can choose from the following options: Critical, High, Medium or Low",
+          "options": [
+            "Critical",
+            "High",
+            "Medium",
+            "Low"
+          ]
+        },
+        {
+          "name": "countries",
+          "title": "Countries",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "placeholder": "For example: IN,US",
+          "tooltip": "Specify the country code to filter the discovered issues. Specify the countries as comma-separated values to get all those results that have any of the specified countries.",
+          "description": "(Optional) Specify the country code to filter the discovered issues. Specify the countries as comma-separated values to get all those results that have any of the specified countries. For example: IN,US"
+        },
+        {
+          "name": "bucket_id",
+          "title": "Bucket ID",
+          "type": "multiselect",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the bucket IDs to filter the results.",
+          "description": "(Optional) Specify the bucket IDs to filter the results. You can choose from the following options: Exposed Remote Service Vulnerable Software Exposed Management Service Certificate Issues DNS Health (email) DNS Health Exposed Database Service Reputation Mis Configuration Missing Encryption Exposed Insecure Service",
+          "options": [
+            "Exposed Remote Service",
+            "Vulnerable Software",
+            "Exposed Management Service",
+            "Certificate Issues",
+            "DNS Health Email",
+            "DNS Health",
+            "Exposed Database Service",
+            "Reputation",
+            "MisConfiguration",
+            "Missing Encryption",
+            "Exposed Insecure Service"
+          ]
+        },
+        {
+          "name": "issue_name_identifier",
+          "title": "Issue Name Identifier",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "placeholder": "example:ip_blacklist,cve_2019_1234",
+          "tooltip": "Specify the issue name identifiers to filter the results, as comma-separated values.",
+          "description": "(Optional) Specify the issue name identifiers to filter the results, as comma-separated values. For example: ip_blacklist,cve_2019_1234"
+        },
+        {
+          "name": "asset_type",
+          "title": "Asset Type",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select the asset type to filter the archived issues.",
+          "description": "(Optional) Select the asset type to filter the archived issues. You can choose from the following options: IP Address, ASN Number, Domain Name, Sub Domain, IP Prefix",
+          "options": [
+            "IP Address",
+            "ASN Number",
+            "IP Prefix",
+            "Domain Name",
+            "Sub Domain"
+          ]
+        },
+        {
+          "name": "asset",
+          "title": "Asset",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "placeholder": "For example: test.example.com",
+          "tooltip": "Specify the asset to filter the results.",
+          "description": "(Optional) Specify the asset to filter the results. For example: test.example.com"
+        },
+        {
+          "name": "search_type",
+          "title": "Search Type",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the search type to filter the retrieved issues. NOTE: Use Asset parameter, along with this parameter, to search.",
+          "description": "(Optional) Specify the search type to filter the retrieved issues. NOTE: Use Asset parameter, along with this parameter, to search. You can select from Exact, Begins with, Ends with or Wildcard",
+          "options": [
+            "Exact",
+            "Begins with",
+            "Ends with",
+            "Wildcard"
+          ]
+        },
+        {
+          "title": "Tags In (Match Any)",
+          "name": "tags_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches any of the specified tags, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches any of the specified tags, operating as an 'OR filter'."
+        },
+        {
+          "title": "Tags In (Match All)",
+          "name": "tags_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'."
+        },
+        {
+          "title": "Groups In (Match Any)",
+          "name": "groups_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'."
+        },
+        {
+          "title": "Groups In (Match All)",
+          "name": "groups_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'."
+        },
+        {
+          "name": "after_primary_scan",
+          "title": "After Primary Scan",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch results for items created before or after the primary scan.",
+          "description": "(Optional) Select whether to fetch results for items created before or after the primary scan. You can choose from following options: True: Select this option to fetch results for items created after the primary scan. False: Select this option to fetch results for items created before the primary scan.",
+          "options":
+          [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "required": false,
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_issue_by_id",
+      "title": "Get Issue By ID",
+      "annotation": "get_issue_by_id",
+      "description": "Retrieves details about a specific security issue based on the unique issue ID you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "tags": [
+          {
+            "id": "",
+            "name": ""
+          }
+        ],
+        "groups": [
+          {
+            "id": "",
+            "name": ""
+          }
+        ],
+        "id": "",
+        "issue_name": "",
+        "asset": "",
+        "asset_type": "",
+        "country": "",
+        "severity": "",
+        "port": "",
+        "bucket": "",
+        "status": "",
+        "user_name": "",
+        "issue_name_identifier": "",
+        "bucket_id": ""
+      },
+      "parameters": [
+        {
+          "name": "issue_id",
+          "title": "Issue ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the issue ID to get details about that specific security issue.",
+          "description": "Specify the issue ID to get details about that specific security issue."
+        }
+      ]
+    },
+    {
+      "operation": "get_issue_summary",
+      "title": "Get Issue Summary",
+      "annotation": "get_issue_summary",
+      "description": "Retrieves the statistics related to security issues discovered in the most recent EASM scan. The response includes a count of the total discovered issues, along with the severity-wise count.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "total": "",
+        "critical": "",
+        "high": "",
+        "low": "",
+        "medium": ""
+      },
+      "parameters": [
+        {
+          "title": "Tags In (Match Any)",
+          "name": "tags_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to retrieve issue statistics for the related issues. You can specify multiple tag IDs separated by commas, it will return results if it matches any of the specified tags, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches any of the specified tags, operating as an 'OR filter'."
+        },
+        {
+          "title": "Tags In (Match All)",
+          "name": "tags_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'."
+        },
+        {
+          "title": "Groups In (Match Any)",
+          "name": "groups_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'."
+        },
+        {
+          "title": "Groups In (Match All)",
+          "name": "groups_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'."
+        },
+        {
+          "name": "after_primary_scan",
+          "title": "After Primary Scan",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch the issue statistics for the issues which are created after primary scan.",
+          "description": "(Optional) Select whether to fetch results for items created before or after the primary scan. You can choose from following options: True: Select this option to fetch results for items created after the primary scan. False: Select this option to fetch results for items created before the primary scan.",
+          "options": [
+            "True",
+            "False"
+          ]
+        }
+      ]
+    },
+    {
+      "operation": "get_archived_issues",
+      "title": "Get Archived Issues",
+      "annotation": "get_archived_issues",
+      "description": "Retrieves a list of security issues that have been marked as either Risk Accepted or False Positive based on the asset you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "hits": [
+          {
+            "asset": "",
+            "asset_type": "",
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "id": "",
+            "issue_name": "",
+            "port": "",
+            "status": "",
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "user_name": ""
+          }
+        ],
+        "page": "",
+        "size": "",
+        "total": ""
+      },
+      "parameters": [
+        {
+          "name": "status",
+          "title": "Status",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select the status, to filter the results from archived issues, from the available options.",
+          "description": "(Optional) Select the status to filter the retrieved archived issues. You can choose from the following options: Risk Accepted, False Positive",
+          "options": [
+            "Risk Accepted",
+            "False Positive"
+          ]
+        },
+        {
+          "name": "asset_type",
+          "title": "Asset Type",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select the asset type, to filter the results, from the archived issues.",
+          "description": "(Optional) Select the asset type to filter the retrieved archived issues. You can choose from following options: IP Address, ASN Number, Domain Name, Sub Domain, IP Prefix",
+          "options": [
+            "IP Address",
+            "ASN Number",
+            "IP Prefix",
+            "Domain Name",
+            "Sub Domain"
+          ]
+        },
+        {
+          "name": "asset",
+          "title": "Asset",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "placeholder": "For example: test.example.com",
+          "tooltip": "Specify the asset, to filter the results, from the archived issues.",
+          "description": "(Optional) Specify the asset to filter the retrieved archived issues. For example: asset.example.com"
+        },
+        {
+          "title": "Tags In (Match Any)",
+          "name": "tags_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter archived issues. You can specify multiple tag IDs separated by commas, it will return results if it matches any of the specified tags, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches any of the specified tags, operating as an 'OR filter'."
+        },
+        {
+          "title": "Tags In (Match All)",
+          "name": "tags_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'."
+        },
+        {
+          "title": "Groups In (Match Any)",
+          "name": "groups_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'."
+        },
+        {
+          "title": "Groups In (Match All)",
+          "name": "groups_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'."
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_archived_assets",
+      "title": "Get Archived Assets",
+      "annotation": "get_archived_assets",
+      "description": "Retrieves a list of assets that have been marked as either Risk Accepted or False Positive.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "hits": [
+          {
+            "asset": "",
+            "asset_type": "",
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "id": "",
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "user_action": "",
+            "user_name": ""
+          }
+        ],
+        "page": "",
+        "size": "",
+        "total": ""
+      },
+      "parameters": [
+        {
+          "name": "user_action",
+          "title": "User Action",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select the user action based on which you want fetch archived assets.",
+          "description": "(Optional) Select the user action based on which to filter the fetched archived assets. You can choose from the following options: False Positive Deleted",
+          "options": [
+            "False Positive",
+            "Deleted"
+          ]
+        },
+        {
+          "name": "asset_type",
+          "title": "Asset Type",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select the asset type, to filter the results, from the archived assets.",
+          "description": "(Optional) Select the asset type to filter the archived assets. You can choose from the following options: IP Address, ASN Number, Domain Name, Sub Domain, IP Prefix",
+          "options": [
+            "IP Address",
+            "ASN Number",
+            "IP Prefix",
+            "Domain Name",
+            "Sub Domain"
+          ]
+        },
+        {
+          "name": "asset",
+          "title": "Asset",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "placeholder": "For example: test.example.com ",
+          "tooltip": "Specify the asset, to filter the results, from the archived assets.",
+          "description": "(Optional) Specify the asset to filter the retrieved archived assets. For example: asset.example.com"
+        },
+        {
+          "title": "Tags In (Match Any)",
+          "name": "tags_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter archived assets. You can specify multiple tag IDs separated by commas, it will return results if it matches any of the specified tags, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches any of the specified tags, operating as an 'OR filter'."
+        },
+        {
+          "title": "Tags In (Match All)",
+          "name": "tags_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'."
+        },
+        {
+          "title": "Groups In (Match Any)",
+          "name": "groups_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'."
+        },
+        {
+          "title": "Groups In (Match All)",
+          "name": "groups_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'."
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_asset_asns",
+      "title": "Get Asset ASNs",
+      "annotation": "get_asset_asns",
+      "description": "Retrieves a list of Autonomous System Numbers (ASNs) discovered in the latest EASM scan based on the asset you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "hits": [
+          {
+            "asset": "",
+            "assets_linked_count": "",
+            "company_name": "",
+            "fgt_metadata": {},
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "id": "",
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ]
+          }
+        ],
+        "page": "",
+        "size": "",
+        "total": ""
+      },
+      "parameters": [
+        {
+          "name": "search_type",
+          "title": "Search Type",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the search type, to filter the results, from the retrieved ASNs.",
+          "description": "(Optional) Specify the search type to filter the results. NOTE: Use Asset parameter to search along with this parameter.",
+          "options": [
+            "Exact",
+            "Begins with",
+            "Ends with",
+            "Wildcard"
+          ]
+        },
+        {
+          "name": "asset",
+          "title": "Asset",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "placeholder": "For example: AS0000",
+          "tooltip": "Specify the asset, to filter the results, from the retrieved ASNs.",
+          "description": "(Optional) Specify the asset to filter the results. For example: AS0000."
+        },
+        {
+          "title": "Tags In (Match Any)",
+          "name": "tags_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved ASNs. You can specify multiple tag IDs separated by commas, it will return results if it matches any of the specified tags, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches any of the specified tags, operating as an 'OR filter'."
+        },
+        {
+          "title": "Tags In (Match All)",
+          "name": "tags_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'."
+        },
+        {
+          "title": "Groups In (Match Any)",
+          "name": "groups_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'."
+        },
+        {
+          "title": "Groups In (Match All)",
+          "name": "groups_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'."
+        },
+        {
+          "name": "after_primary_scan",
+          "title": "After Primary Scan",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch the list of assets that are added after primary scan.",
+          "description": "(Optional) Select whether to fetch results for items created before or after the primary scan. You can choose from following options: True: Select this option to fetch results for items created after the primary scan. False: Select this option to fetch results for items created before the primary scan.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "discovered_by_fgt_integration",
+          "title": "Discovered By FortiGate Integration",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch assets discovered via FortiGate integrations.",
+          "description": "(Optional) Select whether to fetch assets discovered via FortiGate integrations. You can choose from following options: True: Select this option to fetch assets discovered via FortiGate integrations. False: Select this option to fetch assets not discovered via FortiGate integrations.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "cloud_metadata",
+          "title": "Cloud Metadata",
+          "type": "json",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the cloud metadata in JSON format to filter the results. Available fields inside this field are: integration_id, cloud_provider, account_id, resource_id, resource_group, resource_name, resource_type, region, subscription_id.",
+          "description": "(Optional) Specify the cloud metadata in JSON format to filter the results. Available fields are: integration_id, cloud_provider, account_id, resource_id, resource_group, resource_name, resource_type, region, and subscription_id. For example: { \"cloud_provider\": [ \"azure\" ], \"region\": [ \"westus2\" ], \"integration_id\": [ \"777408f550e5rrdd1hjf3w90\" ], \"resource_name\": [ \"TestAssetsPublic\" ] }"
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_asns_by_asset_id",
+      "title": "Get ASNs by Asset ID",
+      "annotation": "get_asns_by_asset_id",
+      "description": "Retrieves details about a specific Autonomous System Number(ASN) based on the asset ID you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "conditional_output_schema": [
+        {
+          "condition": "{{ linked_assets == false }}",
+          "output_schema": {
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "id": "",
+            "asset": "",
+            "assets_linked_count": "",
+            "company_name": "",
+            "fgt_metadata": {},
+            "discovery_path": [
+              {
+                "source": "",
+                "module": "",
+                "name": "",
+                "target": "",
+                "data_type": ""
+              }
+            ]
+          }
+        },
+        {
+          "condition": "{{ linked_assets == true }}",
+          "output_schema": {
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "id": "",
+            "asset": "",
+            "assets_linked_count": "",
+            "company_name": "",
+            "fgt_metadata": {},
+            "discovery_path": [
+              {
+                "source": "",
+                "module": "",
+                "name": "",
+                "target": "",
+                "data_type": ""
+              }
+            ],
+            "assets_linked": []
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "asset_id",
+          "title": "Asset ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the asset ID to retrieve the ASN details. ",
+          "tooltip": "Specify the asset ID to retrieve the ASN details."
+        },
+        {
+          "name": "linked_assets",
+          "title": "Linked Assets",
+          "type": "checkbox",
+          "value": false,
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select to retrieve the linked assets.",
+          "description": "(Optional) Select to retrieve linked assets. By default it is unchecked and set to False. "
+        }
+      ]
+    },
+    {
+      "operation": "get_domains",
+      "title": "Get Domains",
+      "annotation": "get_domains",
+      "description": "Retrieves a list of domains discovered in the latest EASM scan based on the filter criteria like ports, technologies, and assets you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "asset": "",
+        "assets_linked_count": "",
+        "cloud_metadata": {
+          "region": "",
+          "resource_id": "",
+          "resource_name": "",
+          "resource_type": "",
+          "cloud_provider": "",
+          "resource_group": "",
+          "customer_integration_name": ""
+        },
+        "confidence": "",
+        "domain_expiry": "",
+        "fgt_metadata": {
+          "virtual_ip": [
+            {
+              "name": "",
+              "protocol": "",
+              "mapped_ip": "",
+              "mapped_ports": "",
+              "external_ports": "",
+              "mapped_device_mac": "",
+              "mapped_device_os_name": ""
+            }
+          ],
+          "interface_id": "",
+          "integration_id": "",
+          "interface_name": "",
+          "integration_type": "",
+          "customer_integration_name": ""
+        },
+        "groups": [
+          {
+            "id": "",
+            "name": ""
+          }
+        ],
+        "id": "",
+        "ip_address": "",
+        "nameserver": [],
+        "original_ip": [],
+        "ports": [],
+        "ssl_cert_org": "",
+        "tags": [
+          {
+            "id": "",
+            "name": ""
+          }
+        ],
+        "technologies": []
+      },
+      "parameters": [
+        {
+          "name": "ports",
+          "title": "Ports",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the ports, to filter the results, from retrieved domains. Specify the ports as comma-separated values to get only those results that have all of the specified ports.",
+          "placeholder": "For example 8080,443",
+          "description": "(Optional) Specify the ports to filter retrieved domains. Specify the ports as comma-separated values to get only those results that have all of the specified ports. For example 8080,443"
+        },
+        {
+          "name": "technologies",
+          "title": "Technologies",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the ports, to filter the results, from retrieved domains. Specify a comma-separated string or a single string.",
+          "placeholder": "For example MySQL,Bootstrap",
+          "description": "(Optional) Specify the ports to filter retrieved domains. Specify a comma-separated string or a single string. For example MySQL,Bootstrap"
+        },
+        {
+          "name": "asset",
+          "title": "Asset",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the asset, to filter the results, from the retrieved domains.",
+          "description": "(Optional) Specify the asset to filter retrieved domains."
+        },
+        {
+          "name": "search_type",
+          "title": "Search Type",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the search type, to filter the results, from the retrieved domains. Note: Use Asset parameter to search along with this parameter",
+          "description": "(Optional) Specify the search type to filter retrieved domains. NOTE: Use Asset parameter to search along with this parameter.",
+          "options": [
+            "Exact",
+            "Begins with",
+            "Ends with",
+            "Wildcard"
+          ]
+        },
+        {
+          "title": "Tags In (Match Any)",
+          "name": "tags_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved domains. You can specify multiple tag IDs separated by commas, it will return results if it matches any of the specified tags, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches any of the specified tags, operating as an 'OR filter'."
+        },
+        {
+          "title": "Tags In (Match All)",
+          "name": "tags_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'."
+        },
+        {
+          "title": "Groups In (Match Any)",
+          "name": "groups_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'."
+        },
+        {
+          "title": "Groups In (Match All)",
+          "name": "groups_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'."
+        },
+        {
+          "name": "after_primary_scan",
+          "title": "After Primary Scan",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch the list of assets that are added after primary scan.",
+          "description": "(Optional) Select whether to fetch results for items created before or after the primary scan. You can choose from following options: True: Select this option to fetch results for items created after the primary scan. False: Select this option to fetch results for items created before the primary scan.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "discovered_by_fgt_integration",
+          "title": "Discovered By FortiGate Integration",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch assets discovered via FortiGate integrations.",
+          "description": "(Optional) Select whether to fetch domains discovered via FortiGate integrations. You can choose from following options: True: Select this option to fetch domains discovered via FortiGate integrations. False: Select this option to fetch domains not discovered via FortiGate integrations.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "is_live",
+          "title": "Is Live",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch a list of assets that are live.",
+          "description": "(Optional) Select whether to fetch domains that are live. You can choose from following options: True: Select this option to fetch domains that are live. False: Select this option to fetch domains that are not live, i.e., offline.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "discovered_by_cloud_integration",
+          "title": "Discovered By Cloud Integration",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch assets discovered via cloud integrations.",
+          "description": "(Optional) Select whether to fetch domains discovered via Cloud integrations. You can choose from following options: True: Select this option to fetch domains discovered via Cloud integrations. False: Select this option to fetch domains not discovered via Cloud integrations.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "cloud_metadata",
+          "title": "Cloud Metadata",
+          "type": "json",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the cloud metadata in JSON format to filter the results. Available fields inside this field are: integration_id, cloud_provider, account_id, resource_id, resource_group, resource_name, resource_type, region, subscription_id.",
+          "description": "(Optional) Specify the cloud metadata in JSON format to filter the results. Available fields are: integration_id, cloud_provider, account_id, resource_id, resource_group, resource_name, resource_type, region, and subscription_id. For example: { \"cloud_provider\": [ \"azure\" ], \"region\": [ \"westus2\" ], \"integration_id\": [ \"777408f550e5rrdd1hjf3w90\" ], \"resource_name\": [ \"TestAssetsPublic\" ] }"
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_domain_by_asset_id",
+      "title": "Get Domain by Asset ID",
+      "annotation": "get_domain_by_asset_id",
+      "description": "Retrieves domain details based on the asset ID you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "conditional_output_schema": [
+        {
+          "condition": "{{ linked_assets == false }}",
+          "output_schema": {
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "id": "",
+            "asset": "",
+            "ports": [],
+            "ssl_cert_org": "",
+            "ip_address": "",
+            "technologies": [],
+            "confidence": "",
+            "domain_expiry": "",
+            "nameserver": [],
+            "original_ip": [],
+            "cloud_metadata": {
+              "region": "",
+              "resource_id": "",
+              "resource_name": "",
+              "resource_type": "",
+              "cloud_provider": "",
+              "resource_group": "",
+              "customer_integration_name": ""
+            },
+            "fgt_metadata": {
+              "customer_integration_name": "",
+              "integration_id": "",
+              "integration_type": "",
+              "interface_id": "",
+              "interface_name": "",
+              "virtual_ip": [
+                {
+                  "external_ports": "",
+                  "mapped_device_mac": "",
+                  "mapped_device_os_name": "",
+                  "mapped_ip": "",
+                  "mapped_ports": "",
+                  "name": "",
+                  "protocol": ""
+                }
+              ]
+            },
+            "assets_linked_count": "",
+            "issue_count": "",
+            "discovery_path": [
+              {
+                "source": "",
+                "module": "",
+                "name": "",
+                "target": "",
+                "data_type": ""
+              }
+            ]
+          }
+        },
+        {
+          "condition": "{{ linked_assets == true }}",
+          "output_schema": {
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "id": "",
+            "asset": "",
+            "ports": [],
+            "ssl_cert_org": "",
+            "ip_address": "",
+            "technologies": [],
+            "confidence": "",
+            "domain_expiry": "",
+            "nameserver": [],
+            "original_ip": [],
+            "cloud_metadata": {
+              "region": "",
+              "resource_id": "",
+              "resource_name": "",
+              "resource_type": "",
+              "cloud_provider": "",
+              "resource_group": "",
+              "customer_integration_name": ""
+            },
+            "fgt_metadata": {
+              "customer_integration_name": "",
+              "integration_id": "",
+              "integration_type": "",
+              "interface_id": "",
+              "interface_name": "",
+              "virtual_ip": [
+                {
+                  "external_ports": "",
+                  "mapped_device_mac": "",
+                  "mapped_device_os_name": "",
+                  "mapped_ip": "",
+                  "mapped_ports": "",
+                  "name": "",
+                  "protocol": ""
+                }
+              ]
+            },
+            "assets_linked_count": "",
+            "issue_count": "",
+            "discovery_path": [
+              {
+                "source": "",
+                "module": "",
+                "name": "",
+                "target": "",
+                "data_type": ""
+              }
+            ],
+            "assets_linked": []
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "asset_id",
+          "title": "Asset ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the asset ID to retrieve its associated domain details.",
+          "tooltip": "Specify the asset ID to retrieve the domain details."
+        },
+        {
+          "name": "linked_assets",
+          "title": "Linked Assets",
+          "type": "checkbox",
+          "value": false,
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select to retrieve the linked assets.",
+          "description": "(Optional) Select to retrieve linked assets. By default it is unchecked and set to false. "
+        }
+      ]
+    },
+    {
+      "operation": "get_ips",
+      "title": "Get IPs",
+      "annotation": "get_ips",
+      "description": "Retrieves a list of IP addresses discovered in the latest EASM scan based on the filter criteria like ports, country codes, and assets you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "total": "",
+        "page": "",
+        "size": "",
+        "hits": [
+          {
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "id": "",
+            "ip_prefix": "",
+            "asset": "",
+            "ports": [],
+            "cloud_metadata": {},
+            "fgt_metadata": {},
+            "assets_linked_count": "",
+            "version": ""
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "ports",
+          "title": "Ports",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the ports, to filter the results, from retrieved IP addresses. Specify the ports as comma-separated values to get only those results that have all of the specified ports.",
+          "placeholder": " For example 8080,443",
+          "description": "(Optional) Specify the ports to filter the retrieved IP addresses. Specify the ports as comma-separated values to get only those results that have ALL of the specified ports. For example: 8080,443."
+        },
+        {
+          "name": "countries",
+          "title": "Countries",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the country code, to filter the results, from the discovered issues. Specify the countries as comma-separated values to get all those results that have any of the specified countries.",
+          "placeholder": "For example: IN,US",
+          "description": "(Optional) Specify the country code to filter the discovered issues. Specify the countries as comma-separated values to get all those results that have ANY of the specified countries. For example: IN,US"
+        },
+        {
+          "name": "asset",
+          "title": "Asset",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "placeholder": "For example: 13.77.67.198",
+          "tooltip": "Specify the asset, to filter the results, from the retrieved IP addresses.",
+          "description": "(Optional) Specify the asset to filter the retrieved IP addresses."
+        },
+        {
+          "name": "search_type",
+          "title": "Search Type",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the search type, to filter the results, from the retrieved IPs. Note: Use Asset parameter to search along with this parameter",
+          "description": "(Optional) Select the search type to filter the retrieved IPs. You can choose from the following options: Exact, Begins with, Ends with, Wildcard. NOTE: Use Asset parameter to search along with this parameter.",
+          "options": [
+            "Exact",
+            "Begins with",
+            "Ends with",
+            "Wildcard"
+          ]
+        },
+        {
+          "name": "ip_prefix",
+          "title": "IP Prefix",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify an IP address prefix, to filter the results, from retrieved IP addresses.",
+          "description": "(Optional) Specify an IP address prefix to filter the retrieved IP addresses."
+        },
+        {
+          "name": "version",
+          "title": "Version",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the IP version by which you want to retrieve records.",
+          "description": "(Optional) Select the IP version by which to retrieve records. You can choose from following options: 4: Select to retrieve IPv4 IP addresses. 6: Select to retrieve IPv6 IP addresses.",
+          "options": [
+            4,
+            6
+          ]
+        },
+        {
+          "title": "Tags In (Match Any)",
+          "name": "tags_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved IPs. You can specify multiple tag IDs separated by commas, it will return results if it matches any of the specified tags, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches any of the specified tags, operating as an 'OR filter'."
+        },
+        {
+          "title": "Tags In (Match All)",
+          "name": "tags_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'."
+        },
+        {
+          "title": "Groups In (Match Any)",
+          "name": "groups_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'."
+        },
+        {
+          "title": "Groups In (Match All)",
+          "name": "groups_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'."
+        },
+        {
+          "name": "after_primary_scan",
+          "title": "After Primary Scan",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch the list of assets that are added after primary scan.",
+          "description": "(Optional) Select whether to fetch results for items created before or after the primary scan. You can choose from following options: True: Select this option to fetch results for items created after the primary scan. False: Select this option to fetch results for items created before the primary scan.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "discovered_by_fgt_integration",
+          "title": "Discovered By FortiGate Integration",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch assets discovered via FortiGate integrations.",
+          "description": "(Optional) Select whether to fetch IP addresses discovered via FortiGate integrations. You can choose from following options: True: Select this option to fetch IP addresses discovered via FortiGate integrations. False: Select this option to fetch IP addresses not discovered via FortiGate integrations.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "is_live",
+          "title": "Is Live",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch a list of assets that are live.",
+          "description": "(Optional) Select whether to fetch IP addresses that are live. You can choose from following options: True: Select this option to fetch IP addresses that are live. False: Select this option to fetch IP addresses that are not live, i.e., offline.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "discovered_by_cloud_integration",
+          "title": "Discovered By Cloud Integration",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch assets discovered via cloud integrations.",
+          "description": "(Optional) Select whether to fetch IP addresses discovered via Cloud integrations. You can choose from following options: True: Select this option to fetch IP addresses discovered via Cloud integrations. False: Select this option to fetch IP addresses not discovered via Cloud integrations.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "cloud_metadata",
+          "title": "Cloud Metadata",
+          "type": "json",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the cloud metadata in JSON format to filter the results. Available fields inside this field are: integration_id, cloud_provider, account_id, resource_id, resource_group, resource_name, resource_type, region, subscription_id.",
+          "description": "(Optional) Specify the cloud metadata in JSON format to filter the results. Available fields are: integration_id, cloud_provider, account_id, resource_id, resource_group, resource_name, resource_type, region, and subscription_id. For example: { \"cloud_provider\": [ \"azure\" ], \"region\": [ \"westus2\" ], \"integration_id\": [ \"777408f550e5rrdd1hjf3w90\" ], \"resource_name\": [ \"TestAssetsPublic\" ] }"
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_ips_by_asset_id",
+      "title": "Get IP by Asset ID",
+      "annotation": "get_ips_by_asset_id",
+      "description": "Retrieves IP address details based on the asset ID you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "conditional_output_schema": [
+        {
+          "condition": "{{ linked_assets == false }}",
+          "output_schema": {
+            "tags": [],
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "id": "",
+            "ip_prefix": "",
+            "asset": "",
+            "ports": [],
+            "cloud_metadata": {},
+            "fgt_metadata": {},
+            "assets_linked_count": "",
+            "version": "",
+            "issue_count": "",
+            "discovery_path": [
+              {
+                "source": "",
+                "module": "",
+                "name": "",
+                "target": "",
+                "data_type": ""
+              }
+            ]
+          }
+        },
+        {
+          "condition": "{{ linked_assets == true }}",
+          "output_schema": {
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "id": "",
+            "ip_prefix": "",
+            "asset": "",
+            "ports": [],
+            "cloud_metadata": {},
+            "fgt_metadata": {},
+            "assets_linked_count": "",
+            "version": "",
+            "issue_count": "",
+            "discovery_path": [
+              {
+                "source": "",
+                "module": "",
+                "name": "",
+                "target": "",
+                "data_type": ""
+              }
+            ],
+            "assets_linked": []
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "asset_id",
+          "title": "Asset ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the asset ID to retrieve the IP address details.",
+          "tooltip": "Specify the asset ID to retrieve the IP address details."
+        },
+        {
+          "name": "linked_assets",
+          "title": "Linked Assets",
+          "type": "checkbox",
+          "value": false,
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select to retrieve the linked assets. By default it is unchecked and set to False.",
+          "description": "(Optional) Select to retrieve linked assets. By default it is unchecked and set to false."
+        }
+      ]
+    },
+    {
+      "operation": "get_prefixes",
+      "title": "Get Prefixes",
+      "annotation": "get_prefixes",
+      "description": "Retrieves a list of IP prefixes discovered in the latest EASM scan based on the filter criteria like ASN and assets you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "hits": [
+          {
+            "asn_number": "",
+            "asset": "",
+            "assets_linked_count": "",
+            "company_name": "",
+            "fgt_metadata": {},
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "id": "",
+            "ip_count": "",
+            "live_ip_count": "",
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "version": ""
+          }
+        ],
+        "page": "",
+        "size": "",
+        "total": ""
+      },
+      "parameters": [
+        {
+          "name": "asset",
+          "title": "Asset",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "placeholder": "For example: 185.161.83.0/24",
+          "tooltip": "Specify the asset, to filter the results, from the retrieved IP address prefix.",
+          "description": "(Optional) Specify the asset to filter the retrieved IP address prefix. For example: 185.161.83.0/24."
+        },
+        {
+          "name": "search_type",
+          "title": "Search Type",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the search type, to filter the results, from the retrieved prefixes. Note: Use Asset parameter to search along with this parameter",
+          "description": "(Optional) Specify the search type to filter the retrieved prefixes. NOTE: Use Asset parameter to search along with this parameter.",
+          "options": [
+            "Exact",
+            "Begins with",
+            "Ends with",
+            "Wildcard"
+          ]
+        },
+        {
+          "name": "asn",
+          "title": "ASN",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "placeholder": "For example: AS207180",
+          "tooltip": "Specify the ASN, to filter the results, from retrieved IP address prefixes.",
+          "description": "(Optional) Specify the ASN to filter the retrieved IP address prefixes.For example: AS207180"
+        },
+        {
+          "name": "version",
+          "title": "Version",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the IP version by which you want to retrieve records.",
+          "description": "(Optional) Select the IP version by which to filter retrieved records. You can choose from the following options: 4: Select to retrieve IPv4 IP addresses. 6: Select to retrieve IPv6 IP addresses.",
+          "options": [
+            4,
+            6
+          ]
+        },
+        {
+          "title": "Tags In (Match Any)",
+          "name": "tags_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved prefixes. You can specify multiple tag IDs separated by commas, it will return results if it matches any of the specified tags, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches any of the specified tags, operating as an 'OR filter'."
+        },
+        {
+          "title": "Tags In (Match All)",
+          "name": "tags_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'."
+        },
+        {
+          "title": "Groups In (Match Any)",
+          "name": "groups_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'."
+        },
+        {
+          "title": "Groups In (Match All)",
+          "name": "groups_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'."
+        },
+        {
+          "name": "after_primary_scan",
+          "title": "After Primary Scan",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch the list of assets that are added after primary scan.",
+          "description": "(Optional) Select whether to fetch results for items created before or after the primary scan. You can choose from following options: True: Select this option to fetch results for items created after the primary scan. False: Select this option to fetch results for items created before the primary scan.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "discovered_by_fgt_integration",
+          "title": "Discovered By FortiGate Integration",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch assets discovered via FortiGate integrations.",
+          "description": "(Optional) Select whether to fetch IP addresses discovered via FortiGate integrations. You can choose from following options: True: Select this option to fetch IP addresses discovered via FortiGate integrations. False: Select this option to fetch IP addresses not discovered via FortiGate integrations.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "cloud_metadata",
+          "title": "Cloud Metadata",
+          "type": "json",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the cloud metadata in JSON format to filter the results. Available fields inside this field are: integration_id, cloud_provider, account_id, resource_id, resource_group, resource_name, resource_type, region, subscription_id.",
+          "description": "(Optional) Specify the cloud metadata in JSON format to filter the results. Available fields are: integration_id, cloud_provider, account_id, resource_id, resource_group, resource_name, resource_type, region, and subscription_id. For example: { \"cloud_provider\": [ \"azure\" ], \"region\": [ \"westus2\" ], \"integration_id\": [ \"777408f550e5rrdd1hjf3w90\" ], \"resource_name\": [ \"TestAssetsPublic\" ] }"
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_prefixes_by_asset_id",
+      "title": "Get Prefixes by Asset ID",
+      "annotation": "get_prefixes_by_asset_id",
+      "description": "Retrieves details about a specific IP prefix based on the asset ID you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "conditional_output_schema": [
+        {
+          "condition": "{{ linked_assets == false }}",
+          "output_schema": {
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "id": "",
+            "asn_number": "",
+            "asset": "",
+            "company_name": "",
+            "ip_count": "",
+            "assets_linked_count": "",
+            "version": "",
+            "live_ip_count": "",
+            "fgt_metadata": {},
+            "discovery_path": [
+              {
+                "name": "",
+                "module": "",
+                "source": "",
+                "target": "",
+                "data_type": ""
+              }
+            ]
+          }
+        },
+        {
+          "condition": "{{ linked_assets == true }}",
+          "output_schema": {
+            "id": "",
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "asset": "",
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "version": "",
+            "ip_count": "",
+            "asn_number": "",
+            "company_name": "",
+            "fgt_metadata": {},
+            "assets_linked": [],
+            "live_ip_count": "",
+            "discovery_path": [
+              {
+                "name": "",
+                "module": "",
+                "source": "",
+                "target": "",
+                "data_type": ""
+              }
+            ],
+            "assets_linked_count": ""
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "asset_id",
+          "title": "Asset ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the asset ID to retrieve the IP prefix details.",
+          "tooltip": "Specify the asset ID to retrieve the IP prefix details."
+        },
+        {
+          "name": "linked_assets",
+          "title": "Linked Assets",
+          "type": "checkbox",
+          "value": false,
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select to retrieve the linked assets. By default it is unchecked and set to False.",
+          "description": "(Optional) Select to retrieve linked assets. By default it is unchecked and set to false."
+        }
+      ]
+    },
+    {
+      "operation": "get_subdomains",
+      "title": "Get Subdomains",
+      "annotation": "get_subdomains",
+      "description": "Retrieves a list of subdomains discovered in the latest EASM scan based on the filter criteria like ports, technologies, and assets you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "hits": [
+          {
+            "id": "",
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "asset": "",
+            "ports": [],
+            "groups": [],
+            "ip_address": "",
+            "domain_name": "",
+            "fgt_metadata": {},
+            "technologies": [],
+            "cloud_metadata": {}
+          }
+        ],
+        "page": "",
+        "size": "",
+        "total": ""
+      },
+      "parameters": [
+        {
+          "name": "ports",
+          "title": "Ports",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "placeholder": " For example 8080,443",
+          "tooltip": "Specify the ports, to filter the results, from retrieved subdomains. Specify the ports as comma-separated values to get only those results that have all of the specified ports.",
+          "description": "(Optional) Specify the ports to filter the retrieved subdomains. Specify the ports as comma-separated values to get only those results that have ALL of the specified ports. For example: 8080,443."
+        },
+        {
+          "name": "technologies",
+          "title": "Technologies",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the technology discovered on subdomain, to filter the results, from retrieved subdomains. Specify a comma-separated string or a single string. For example MySQL,Bootstrap",
+          "placeholder": "e.g MySQL,Bootstrap",
+          "description": "(Optional) Specify the technology discovered on subdomain to filter the retrieved subdomains. Specify a comma-separated string or a single string. For example MySQL,Bootstrap."
+        },
+        {
+          "name": "domain",
+          "title": "Domain",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify a domain, to filter the results, from the retrieved subdomains.",
+          "description": "(Optional) Specify a domain to filter the retrieved subdomains."
+        },
+        {
+          "name": "asset",
+          "title": "Asset",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the asset, to filter the results, from the retrieved subdomains.",
+          "description": "(Optional) Specify the asset to filter the retrieved subdomains."
+        },
+        {
+          "name": "search_type",
+          "title": "Search Type",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the search type, to filter the results, from the retrieved subdomains. Note: Use Asset parameter to search along with this parameter",
+          "description": "(Optional) Specify the search type to filter the retrieved subdomains. NOTE: Use Asset parameter to search along with this parameter.",
+          "options": [
+            "Exact",
+            "Begins with",
+            "Ends with",
+            "Wildcard"
+          ]
+        },
+        {
+          "title": "Tags In (Match Any)",
+          "name": "tags_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved subdomains. You can specify multiple tag IDs separated by commas, it will return results if it matches any of the specified tags, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches any of the specified tags, operating as an 'OR filter'."
+        },
+        {
+          "title": "Tags In (Match All)",
+          "name": "tags_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'."
+        },
+        {
+          "title": "Groups In (Match Any)",
+          "name": "groups_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'."
+        },
+        {
+          "title": "Groups In (Match All)",
+          "name": "groups_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'."
+        },
+        {
+          "name": "after_primary_scan",
+          "title": "After Primary Scan",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch the list of assets that are added after primary scan.",
+          "description": "(Optional) Select whether to fetch results for items created before or after the primary scan. You can choose from following options: True: Select this option to fetch results for items created after the primary scan. False: Select this option to fetch results for items created before the primary scan.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "discovered_by_fgt_integration",
+          "title": "Discovered By FortiGate Integration",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch assets discovered via FortiGate integrations.",
+          "description": "(Optional) Select whether to fetch subdomains discovered via FortiGate integrations. You can choose from following options: True: Select this option to fetch subdomains discovered via FortiGate integrations. False: Select this option to fetch subdomains not discovered via FortiGate integrations.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "is_live",
+          "title": "Is Live",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch a list of assets that are live.",
+          "description": "(Optional) Select whether to fetch subdomains that are live. You can choose from following options: True: Select this option to fetch subdomains that are live. False: Select this option to fetch subdomains that are not live, i.e., offline.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "discovered_by_cloud_integration",
+          "title": "Discovered By Cloud Integration",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch assets discovered via cloud integrations.",
+          "description": "(Optional) Select whether to fetch subdomains discovered via Cloud integrations. You can choose from following options: True: Select this option to fetch subdomains discovered via Cloud integrations. False: Select this option to fetch subdomains not discovered via Cloud integrations.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "cloud_metadata",
+          "title": "Cloud Metadata",
+          "type": "json",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the cloud metadata in JSON format to filter the results. Available fields inside this field are: integration_id, cloud_provider, account_id, resource_id, resource_group, resource_name, resource_type, region, subscription_id.",
+          "description": "(Optional) Specify the cloud metadata in JSON format to filter the results. Available fields are: integration_id, cloud_provider, account_id, resource_id, resource_group, resource_name, resource_type, region, and subscription_id. For example: { \"cloud_provider\": [ \"azure\" ], \"region\": [ \"westus2\" ], \"integration_id\": [ \"777408f550e5rrdd1hjf3w90\" ], \"resource_name\": [ \"TestAssetsPublic\" ] }"
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_subdomain_by_asset_id",
+      "title": "Get Subdomain by Asset ID",
+      "annotation": "get_subdomain_by_asset_id",
+      "description": "Retrieves subdomain details based on the asset ID you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "id": "",
+        "tags": [
+          {
+            "id": "",
+            "name": ""
+          }
+        ],
+        "asset": "",
+        "ports": [],
+        "groups": [],
+        "ip_address": "",
+        "domain_name": "",
+        "issue_count": "",
+        "fgt_metadata": {},
+        "technologies": [],
+        "cloud_metadata": {},
+        "discovery_path": [
+          {
+            "name": "",
+            "module": "",
+            "source": "",
+            "target": "",
+            "data_type": ""
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "asset_id",
+          "title": "Asset ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the asset ID to retrieve the subdomain details.",
+          "tooltip": "Specify the asset ID to retrieve the subdomain details."
+        }
+      ]
+    },
+    {
+      "operation": "get_asset_statistics",
+      "title": "Get Asset Statistics",
+      "annotation": "get_asset_statistics",
+      "description": "Retrieves the statistics related to assets discovered in the most recent EASM scan. The response includes a count of the total discovered and online assets.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "org_name": "",
+        "asn_count": "",
+        "ip_prefix_count": "",
+        "live_domain_count": "",
+        "total_domain_count": "",
+        "billable_assets_count": "",
+        "live_ip_address_count": "",
+        "live_sub_domain_count": "",
+        "total_ip_address_count": "",
+        "total_sub_domain_count": ""
+      },
+      "parameters": [
+        {
+          "name": "ports",
+          "title": "Ports",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the ports, to filter the results, from assets statistics. Specify the ports as comma-separated values to get only those results that have all of the specified ports.",
+          "placeholder": "For example 8080,443",
+          "description": "(Optional) Specify the ports to filter the assets statistics. Specify the ports as comma-separated values to get only those results that have ALL of the specified ports. For example: 8080,443."
+        },
+        {
+          "name": "countries",
+          "title": "Countries",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "placeholder": "For example: IN,US",
+          "tooltip": "Specify the country code, to filter the results, from the assets statistics. Specify the countries as comma-separated values to get all those results that have any of the specified countries.",
+          "description": "(Optional) Specify the country code to filter the discovered issues. Specify the countries as comma-separated values to get all those results that have ANY of the specified countries. For example: IN,US"
+        },
+        {
+          "name": "technologies",
+          "title": "Technologies",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the technologies, to filter the results, from assets statistics. Specify a comma-separated string or a single string.",
+          "placeholder": "For example MySQL,Bootstrap",
+          "description": "(Optional) Specify the technologies to filter the assets statistics. Specify a comma-separated string or a single string. For example MySQL,Bootstrap."
+        },
+        {
+          "title": "Tags In (Match Any)",
+          "name": "tags_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved assets statistics. You can specify multiple tag IDs separated by commas, it will return results if it matches any of the specified tags, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches any of the specified tags, operating as an 'OR filter'."
+        },
+        {
+          "title": "Tags In (Match All)",
+          "name": "tags_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'."
+        },
+        {
+          "title": "Groups In (Match Any)",
+          "name": "groups_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'."
+        },
+        {
+          "title": "Groups In (Match All)",
+          "name": "groups_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'."
+        },
+        {
+          "name": "after_primary_scan",
+          "title": "After Primary Scan",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch the list of assets that are added after primary scan.",
+          "description": "(Optional) Select whether to fetch results for items created before or after the primary scan. You can choose from following options: True: Select this option to fetch results for items created after the primary scan. False: Select this option to fetch results for items created before the primary scan.",
+          "options": [
+            "True",
+            "False"
+          ]
+        }
+      ]
+    },
+    {
+      "operation": "get_breaches",
+      "title": "Get Breaches",
+      "annotation": "get_breaches",
+      "description": "Retrieves a list of credential breaches related to the organization ID based on the keyword to search and other details you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "hits": [
+          {
+            "id": "",
+            "date": "",
+            "name": "",
+            "details": "",
+            "added_on": "",
+            "has_password": "",
+            "affected_domains": "",
+            "compromised_data": "",
+            "compromised_accounts": ""
+          }
+        ],
+        "page": "",
+        "size": "",
+        "total": ""
+      },
+      "parameters": [
+        {
+          "name": "name",
+          "title": "Breach Name",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the breach name to retrieve specific breach details.",
+          "placeholder": "For example:testorg",
+          "description": "(Optional) Specify the breach name to retrieve specific breach details. For example: test-org. The response filters out results and fetches credentials exposed for test-org."
+        },
+        {
+          "name": "q",
+          "title": "Keyword",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the text to search in breach name, details, and list of compromised data.",
+          "placeholder": "For example:testorg",
+          "description": "(Optional) Specify the text to search in breach name, details, and list of compromised data. For example:test-org. The response filters out results and fetches credentials exposed for test-org."
+        },
+        {
+          "name": "has_password",
+          "title": "Has Password",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify whether to filter the leaked credential list based on whether the credentials contain passwords.",
+          "description": "(Optional) Select to filter the leaked credential list based on whether the credentials contain passwords.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "is_relevant",
+          "title": "Is Relevant",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify whether to filter the leaked credential list related to organisation.",
+          "description": "(Optional) Select to filter the leaked credential list related to organization.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_breaches_by_id",
+      "title": "Get Breaches by ID",
+      "annotation": "get_breaches_by_id",
+      "description": "Retrieves details about a specific credential breach based on the breach ID you have specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "id": "",
+        "date": "",
+        "name": "",
+        "details": "",
+        "added_on": "",
+        "has_password": "",
+        "affected_domains": "",
+        "compromised_data": "",
+        "compromised_accounts": ""
+      },
+      "parameters": [
+        {
+          "name": "breach_id",
+          "title": "Breach ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the breach ID to retrieve the breach details.",
+          "tooltip": "Specify the breach ID to retrieve the breach details."
+        }
+      ]
+    },
+    {
+      "operation": "generate_report",
+      "title": "Generate Report",
+      "annotation": "generate_report",
+      "description": "Initiates the report generation for the latest EASM scan.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "report_id": ""
+      },
+      "parameters": [
+        {
+          "title": "Tags In (Match Any)",
+          "name": "tags_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter EASM scan to for report generation. You can specify multiple tag IDs separated by commas, it will return results if it matches any of the specified tags, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches any of the specified tags, operating as an 'OR filter'."
+        },
+        {
+          "title": "Tags In (Match All)",
+          "name": "tags_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the tag ID to filter retrieved results. You can specify multiple tag IDs as comma-separated values. It returns results if it matches all of the specified tags, operating as an 'AND filter'."
+        },
+        {
+          "title": "Groups In (Match Any)",
+          "name": "groups_in",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches any of the specified groups, operating as an 'OR filter'."
+        },
+        {
+          "title": "Groups In (Match All)",
+          "name": "groups_match_all",
+          "type": "text",
+          "visible": true,
+          "editable": true,
+          "required": false,
+          "placeholder": "",
+          "tooltip": "Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'.",
+          "description": "(Optional) Specify the group ID to filter retrieved results. You can specify multiple group IDs as comma-separated values. It returns results if it matches all of the specified groups, operating as an 'AND filter'."
+        }
+      ]
+    },
+    {
+      "operation": "get_report",
+      "title": "Get Report",
+      "annotation": "get_report",
+      "description": "Checks the status of the generated EASM report based on the report ID you have specified. The response contains the s3 URL of the report to download if generated.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "conditional_output_schema": [
+        {
+          "condition": "{{ get_link == true }}",
+          "output_schema": {
+            "report_url": ""
+          }
+        },
+        {
+          "condition": "{{ get_link == false }}",
+          "output_schema": {
+            "asn": [],
+            "domain": [
+              {
+                "tags": "",
+                "asset": "",
+                "groups": "",
+                "ip_address": "",
+                "open_ports": "",
+                "technologies": "",
+                "total_issues": "",
+                "discovery_path": "",
+                "subdomain_count": ""
+              }
+            ],
+            "issues": [
+              {
+                "port": "",
+                "tags": "",
+                "asset": "",
+                "groups": "",
+                "severity": "",
+                "issue_name": "",
+                "issue_status": "",
+                "linked_assets": "",
+                "issue_category": "",
+                "recommendations": "",
+                "additional_details": ""
+              }
+            ],
+            "ip_block": [],
+            "ip_address": [
+              {
+                "tags": "",
+                "asset": "",
+                "groups": "",
+                "country": "",
+                "open_ports": "",
+                "total_issues": "",
+                "linked_assets": "",
+                "discovery_path": ""
+              }
+            ],
+            "sub_domain": [
+              {
+                "tags": "",
+                "asset": "",
+                "groups": "",
+                "open_ports": "",
+                "technologies": "",
+                "total_issues": "",
+                "linked_assets": "",
+                "discovery_path": ""
+              }
+            ],
+            "organization": [],
+            "disappeared_assets": [
+              {
+                "asset": "",
+                "asset_type": ""
+              }
+            ],
+            "newly_discovered_assets": [
+              {
+                "asset": "",
+                "asset_type": ""
+              }
+            ]
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "report_id",
+          "title": "Report ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the report ID to retrieve the report details.",
+          "tooltip": "Specify the report ID to retrieve the report details."
+        },
+        {
+          "name": "get_link",
+          "title": "Get Report Link",
+          "type": "checkbox",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": false,
+          "description": "(Optional) Select the checkbox to get an S3 link of report file. Clear the checkbox to retrieve file data. By default, this checkbox is cleared, i.e., set to false.",
+          "tooltip": "If set to True then S3 link of report file will be retrieved else it will retrieve file data."
+        }
+      ]
+    },
+    {
+      "operation": "get_exposed_services",
+      "title": "Get Exposed Services",
+      "annotation": "get_exposed_services",
+      "description": "Retrieves a list of exposed services in the latest EASM scan based on the filter criteria like asset, ports, services, and products, etc.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "hits": [
+          {
+            "cpe": [],
+            "domains": [],
+            "ip_address": "",
+            "os": "",
+            "port": "",
+            "product": "",
+            "service": "",
+            "service_banner": "",
+            "ssl": {},
+            "subdomains": [],
+            "version": ""
+          }
+        ],
+        "page": "",
+        "size": "",
+        "total": ""
+      },
+      "parameters": [
+        {
+          "name": "asset",
+          "title": "Asset",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the asset, to filter the results, from retrieved exposed services. Note: The only supported asset types are the ip address, domain, sub-domain.",
+          "description": "(Optional) Specify the asset to filter the retrieved exposed services. NOTE: The only supported asset types are the ip address, domain, sub-domain."
+        },
+        {
+          "name": "ports",
+          "title": "Ports",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the ports, to filter the results, from retrieved exposed services. Specify the ports as comma-separated values to get only those results that have all of the specified ports.",
+          "placeholder": "For example 8080,443",
+          "description": "(Optional) Specify the ports to filter the retrieved exposed services. Specify the ports as comma-separated values to get only those results that have ALL of the specified ports. For example: 8080,443."
+        },
+        {
+          "name": "services",
+          "title": "Services",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the services, to filter the results, from retrieved exposed services. Specify a comma-separated string or a single string. It will return results if it matches any of the specified services, operating as an 'OR filter'",
+          "placeholder": "For example: http,https.",
+          "description": "(Optional) Specify the services to filter the retrieved exposed services. Specify the services as comma-separated values to get only those results that have ANY of the specified services. For example: http,https."
+        },
+        {
+          "name": "products",
+          "title": "Products",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the products, to filter the results, from retrieved exposed services. Specify a comma-separated string or a single string. It will return results if it matches any of the specified products, operating as an 'OR filter'.",
+          "placeholder": "For example: nginx, Jetty.",
+          "description": "(Optional) Specify the products to filter the retrieved exposed services. Specify a comma-separated string or a single string. For example: nginx, Jetty."
+        },
+        {
+          "name": "service_banner",
+          "title": "Services Banner",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the keywords in the service banner, to filter the results, from retrieved exposed services. Note: Please do not use *, it is implicitly added.",
+          "description": "(Optional) Specify the keywords in the service banner to filter the retrieved exposed services. NOTE: Do not use *; it is added implicitly."
+        },
+        {
+          "name": "after_primary_scan",
+          "title": "After Primary Scan",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch the list of assets that are added after primary scan.",
+          "description": "(Optional) Select whether to fetch results for items created before or after the primary scan. You can choose from following options: True: Select this option to fetch results for items created after the primary scan. False: Select this option to fetch results for items created before the primary scan.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "has_ssl",
+          "title": "Has SSL",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select whether to fetch assets which have SSL.",
+          "description": "(Optional) Select whether to fetch assets which have SSL. You can choose from following options: True: Select this option to fetch assets which have SSL. False: Select this option to fetch assets.",
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_cloud_integrations",
+      "title": "Get Cloud Integrations",
+      "annotation": "get_cloud_integrations",
+      "description": "Retrieves a list of cloud integrations based on the filter criteria like provider, connection_status.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "hits": [
+          {
+            "name": "",
+            "provider": "",
+            "account_id": "",
+            "policy_errors": [],
+            "connection_status": ""
+          }
+        ],
+        "page": "",
+        "size": "",
+        "total": ""
+      },
+      "parameters": [
+        {
+          "name": "provider",
+          "title": "Provider",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the provider, to filter the results, from retrieved cloud integrations.",
+          "description": "(Optional) Specify the provider, to filter the results, from retrieved cloud integrations.",
+          "options": [
+            "AWS",
+            "Azure",
+            "GCP"
+          ]
+        },
+        {
+          "name": "connection_status",
+          "title": "Connection Status",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select the connection status, to filter the results, from retrieved cloud integrations.",
+          "description": "(Optional) Select the connection status, to filter the results, from retrieved cloud integrations You can choose from Success, Failed.",
+          "options": [
+            "Failed",
+            "Success"
+          ]
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_fgt_integrations",
+      "title": "Get FortiGate Integrations",
+      "annotation": "get_fgt_integrations",
+      "description": "Retrieves a list of FortiGate integrations based on input parameters specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "hits": [
+          {
+            "host": "",
+            "name": "",
+            "port": "",
+            "is_ssl": "",
+            "verify_ssl": "",
+            "policy_errors": [],
+            "connection_status": ""
+          }
+        ],
+        "page": "",
+        "size": "",
+        "total": ""
+      },
+      "parameters": [
+        {
+          "name": "connection_status",
+          "title": "Connection Status",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select the connection status, to filter the results, from retrieved FortiGate integrations.",
+          "description": "(Optional) Select the connection status to filter the retrieved FortiGate integrations. You can choose from Failed, Success",
+          "options": [
+            "Failed",
+            "Success"
+          ]
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_security_insights",
+      "title": "Get Security Insights",
+      "annotation": "get_security_insights",
+      "description": "Retrieves the security insights on dns configurations for the given domain.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "authoritative": [
+          {
+            "comments": "",
+            "info": "",
+            "severity_on_fail": "",
+            "status": "",
+            "title": ""
+          }
+        ],
+        "parent": [
+          {
+            "comments": "",
+            "info": "",
+            "severity_on_fail": "",
+            "status": "",
+            "title": ""
+          }
+        ],
+        "soa": [
+          {
+            "comments": "",
+            "info": "",
+            "severity_on_fail": "",
+            "status": "",
+            "title": ""
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "name": "domain",
+          "title": "Domain",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the domain for which you security insights are to be retrieved.",
+          "description": "Specify the domain for which you security insights are to be retrieved."
+        }
+      ]
+    },
+    {
+      "operation": "get_archived_issue_comments",
+      "title": "Get Archived Issue Comments",
+      "annotation": "get_archived_issue_comments",
+      "description": "Retrieves a list of comments for given archived issue ID.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "hits": [
+          {
+            "text": "",
+            "user_name": "",
+            "comment_type": ""
+          }
+        ],
+        "page": "",
+        "size": "",
+        "total": ""
+      },
+      "parameters": [
+        {
+          "title": "Issue ID",
+          "name": "issue_id",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the ID of the issue whose comments are to be retrieved.",
+          "description": "Specify the ID of the issue whose comments are to be retrieved."
+        },
+        {
+          "name": "comment_type",
+          "title": "Comment Type",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": "",
+          "tooltip": "Select comment type which is to be retrieved for specified issue.",
+          "description": "(Optional) Select comment type which is to be retrieved for specified issue. You can choose from User or System",
+          "options": [
+            "System",
+            "User"
+          ]
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_issue_comments",
+      "title": "Get Issue Comments",
+      "annotation": "get_issue_comments",
+      "description": "Retrieves a list of comments for given issue ID.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "hits": [
+          {
+            "text": "",
+            "user_name": "",
+            "comment_type": ""
+          }
+        ],
+        "page": "",
+        "size": "",
+        "total": ""
+      },
+      "parameters": [
+        {
+          "title": "Issue ID",
+          "name": "issue_id",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the ID of the issue whose comments are to be retrieved.",
+          "description": "Specify the ID of the issue whose comments are to be retrieved."
+        },
+        {
+          "name": "comment_type",
+          "title": "Comment Type",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select comment type which is to be retrieved for specified issue.",
+          "description": "(Optional) Select comment type which is to be retrieved for specified issue. You can choose from User or System",
+          "options": [
+            "System",
+            "User"
+          ]
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_tags",
+      "title": "Get Tags",
+      "annotation": "get_tags",
+      "description": "Retrieves a list of tags based on scope, name and other parameters specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "hits": [
+          {
+            "id": "",
+            "name": "",
+            "scope": "",
+            "description": "",
+            "linked_assets_count": ""
+          }
+        ],
+        "page": "",
+        "size": "",
+        "total": ""
+      },
+      "parameters": [
+        {
+          "name": "scope",
+          "title": "Scope",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the scope for which you want to retrieve the tags.",
+          "description": "(Optional) Select the scope for which you want to retrieve the tags. You can choose from following options: System, Client",
+          "options": [
+            "System",
+            "Client"
+          ]
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the name of tag which you want to retrieve. Name are matched partially.",
+          "description": "(Optional) Specify the name of tag to retrieve. Names are matched partially."
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_tag_by_id",
+      "title": "Get Tag Details",
+      "annotation": "get_tag_by_id",
+      "description": "Retrieves a specific tag details based on tag ID specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "conditional_output_schema": [
+        {
+          "condition": "{{ linked_assets==true }}",
+          "output_schema": {
+            "id": "",
+            "name": "",
+            "scope": "",
+            "description": "",
+            "linked_assets": [],
+            "linked_assets_count": ""
+          }
+        },
+        {
+          "condition": "{{ linked_assets == false }}",
+          "output_schema": {
+            "id": "",
+            "name": "",
+            "scope": "",
+            "description": "",
+            "linked_assets_count": ""
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "tag_id",
+          "title": "Tag ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the ID of the tag which is to be retrieved.",
+          "description": "Specify the ID of the tag which is to be retrieved."
+        },
+        {
+          "name": "linked_assets",
+          "title": "Linked Asset",
+          "type": "checkbox",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": false,
+          "tooltip": "Select to retrieve the linked assets.",
+          "description": "(Optional) Select to retrieve linked assets. By default it is unchecked and set to False."
+        }
+      ]
+    },
+    {
+      "operation": "get_groups",
+      "title": "Get Groups",
+      "annotation": "get_groups",
+      "description": "Retrieves a list of groups based on scope, name and other parameters specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "hits": [
+          {
+            "id": "",
+            "name": "",
+            "scope": "",
+            "description": "",
+            "linked_assets_count": ""
+          }
+        ],
+        "page": "",
+        "size": "",
+        "total": ""
+      },
+      "parameters": [
+        {
+          "name": "scope",
+          "title": "Scope",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the scope for which you want to retrieve the groups.",
+          "description": "(Optional) Specify the scope for which you want to retrieve the groups. You can choose from System, Client",
+          "options": [
+            "System",
+            "Client"
+          ]
+        },
+        {
+          "name": "name",
+          "title": "Group Name",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the name of group which you want to retrieve. Name are matched partially.",
+          "description": "(Optional) Specify the name of group which you want to retrieve. Name are matched partially."
+        },
+        {
+          "name": "page",
+          "value": 1,
+          "title": "Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the page number from which you want to retrieve records.",
+          "description": "(Optional) Specify the page number from which you want to retrieve records. By default, it is set to 1."
+        },
+        {
+          "name": "size",
+          "title": "Size",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": 10,
+          "placeholder": "Minimum permissible value is 0 and maximum is 500.",
+          "tooltip": "Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records.",
+          "description": "(Optional) Specify the maximum number of records that this operation should return for the specified page. By default, this operation retrieves 10 records. Minimum permissible value is 0 and maximum is 500."
+        }
+      ]
+    },
+    {
+      "operation": "get_group_by_id",
+      "title": "Get Group Details",
+      "annotation": "get_group_by_id",
+      "description": "Retrieves a specific group details based on group ID specified.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "conditional_output_schema": [
+        {
+          "condition": "{{ linked_assets == true }}",
+          "output_schema": {
+            "id": "",
+            "name": "",
+            "scope": "",
+            "description": "",
+            "linked_assets": [],
+            "linked_assets_count": ""
+          }
+        },
+        {
+          "condition": "{{ linked_assets == false }}",
+          "output_schema": {
+            "id": "",
+            "name": "",
+            "scope": "",
+            "description": "",
+            "linked_assets_count": ""
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "name": "group_id",
+          "title": "Group ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the ID of the group which is to be retrieved.",
+          "description": "Specify the ID of the group which is to be retrieved."
+        },
+        {
+          "name": "linked_assets",
+          "title": "Linked Asset",
+          "type": "checkbox",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "value": false,
+          "tooltip": "Select to retrieve the linked assets.",
+          "description": "(Optional) Select to retrieve linked assets. By default it is unchecked and set to False."
+        }
+      ]
+    }
+  ]
+}
