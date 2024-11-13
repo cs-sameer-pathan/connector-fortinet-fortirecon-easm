@@ -1230,56 +1230,63 @@
       "visible": true,
       "enabled": true,
       "output_schema": {
-        "asset": "",
-        "assets_linked_count": "",
-        "cloud_metadata": {
-          "region": "",
-          "resource_id": "",
-          "resource_name": "",
-          "resource_type": "",
-          "cloud_provider": "",
-          "resource_group": "",
-          "customer_integration_name": ""
-        },
-        "confidence": "",
-        "domain_expiry": "",
-        "fgt_metadata": {
-          "virtual_ip": [
-            {
-              "name": "",
-              "protocol": "",
-              "mapped_ip": "",
-              "mapped_ports": "",
-              "external_ports": "",
-              "mapped_device_mac": "",
-              "mapped_device_os_name": ""
-            }
-          ],
-          "interface_id": "",
-          "integration_id": "",
-          "interface_name": "",
-          "integration_type": "",
-          "customer_integration_name": ""
-        },
-        "groups": [
+        "hits": [
           {
+            "asset": "",
+            "assets_linked_count": "",
+            "cloud_metadata": {
+              "region": "",
+              "resource_id": "",
+              "resource_name": "",
+              "resource_type": "",
+              "cloud_provider": "",
+              "resource_group": "",
+              "customer_integration_name": ""
+            },
+            "confidence": "",
+            "domain_expiry": "",
+            "fgt_metadata": {
+              "virtual_ip": [
+                {
+                  "name": "",
+                  "protocol": "",
+                  "mapped_ip": "",
+                  "mapped_ports": "",
+                  "external_ports": "",
+                  "mapped_device_mac": "",
+                  "mapped_device_os_name": ""
+                }
+              ],
+              "interface_id": "",
+              "integration_id": "",
+              "interface_name": "",
+              "integration_type": "",
+              "customer_integration_name": ""
+            },
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
             "id": "",
-            "name": ""
+            "ip_address": "",
+            "nameserver": [],
+            "original_ip": [],
+            "ports": [],
+            "ssl_cert_org": "",
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "technologies": []
           }
         ],
-        "id": "",
-        "ip_address": "",
-        "nameserver": [],
-        "original_ip": [],
-        "ports": [],
-        "ssl_cert_org": "",
-        "tags": [
-          {
-            "id": "",
-            "name": ""
-          }
-        ],
-        "technologies": []
+        "page": "",
+        "size": "",
+        "total": ""
       },
       "parameters": [
         {
@@ -2794,7 +2801,6 @@
         "details": "",
         "added_on": "",
         "has_password": "",
-        "affected_domains": "",
         "compromised_data": "",
         "compromised_accounts": ""
       },

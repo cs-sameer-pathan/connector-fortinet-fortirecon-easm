@@ -1,0 +1,256 @@
+{
+    "config": [
+        {
+            "server_url": "your_server_url",
+            "api_key": "your_api_key",
+            "org_id": "your_org_id",
+            "verify_ssl": true
+        }
+    ],
+    "get_leaked_credentials": [
+        {
+            "q": null,
+            "breach_id": null,
+            "email": null,
+            "domain": null,
+            "status": "ACTIVE",
+            "has_password": "True",
+            "start_date": "2024-11-12T07:18:15.218Z",
+            "end_date": "2024-11-12T07:18:15.218Z",
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_scan_statistics": [
+        {
+            "tags_in": null,
+            "tags_match_all": null,
+            "groups_in": null,
+            "groups_match_all": null
+        }
+    ],
+    "get_issues_discovered": [
+        {
+            "status": "Active",
+            "severity": "Critical"
+        }
+    ],
+    "get_issue_by_id": [
+        {
+            "issue_id": "64d37f3149b28f7c4ca64366"
+        }
+    ],
+    "get_issue_summary": [
+        {
+            "tags_in": null,
+            "tags_match_all": null,
+            "groups_in": null,
+            "groups_match_all": null,
+            "after_primary_scan": "True"
+        }
+    ],
+    "get_archived_issues": [
+        {
+            "status": "Risk Accepted",
+            "asset_type": "IP Address",
+            "asset": null,
+            "tags_in": null,
+            "tags_match_all": null,
+            "groups_in": null,
+            "groups_match_all": null,
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_archived_assets": [
+        {
+            "user_action": "False Positive",
+            "asset_type": "IP Address",
+            "asset": null,
+            "tags_in": null,
+            "tags_match_all": null,
+            "groups_in": null,
+            "groups_match_all": null,
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_asset_asns": [
+        {
+            "search_type": "Exact",
+            "asset": "AS54321",
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_asns_by_asset_id": [
+        {
+            "asset_id": "65a7ca068996c95cafa49059",
+            "linked_assets": false
+        }
+    ],
+    "get_domains": [
+        {
+            "asset": "acmedemo1hawkeye.com",
+            "search_type": "Exact",
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_domain_by_asset_id": [
+        {
+            "asset_id": "6284d0ecdbb73af1cab5986d",
+            "linked_assets": false
+        }
+    ],
+    "get_ips": [
+        {
+            "asset": "52.",
+            "search_type": "Wildcard",
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_ips_by_asset_id": [
+        {
+            "asset_id": "6284d0efdbb73af1cab59c5f",
+            "linked_assets": false
+        }
+    ],
+    "get_prefixes": [
+        {
+            "asset": "127.112",
+            "search_type": "Wildcard",
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_prefixes_by_asset_id": [
+        {
+            "asset_id": "65a7ca558996c95cafa4905d",
+            "linked_assets": false
+        }
+    ],
+    "get_subdomains": [
+        {
+            "ports": "443",
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_subdomain_by_asset_id": [
+        {
+            "asset_id": "6284d0ecdbb73af1cab5988c"
+        }
+    ],
+    "get_asset_statistics": [
+        {
+            "ports": null,
+            "countries": null,
+            "technologies": null,
+            "tags_in": null,
+            "tags_match_all": null,
+            "groups_in": null,
+            "groups_match_all": null,
+            "after_primary_scan": "True"
+        }
+    ],
+    "get_breaches": [
+        {
+            "has_password": "True",
+            "is_relevant": "True",
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_breaches_by_id": [
+        {
+            "breach_id": "4569"
+        }
+    ],
+    "generate_report": [
+        {
+            "tags_in": null,
+            "tags_match_all": null,
+            "groups_in": null,
+            "groups_match_all": null
+        }
+    ],
+    "get_report": [
+        {
+            "report_id": "3957cd50edf94dd5b6149765a09dd1fc",
+            "get_link": false
+        }
+    ],
+    "get_exposed_services": [
+        {
+            "services": "https",
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_cloud_integrations": [
+        {
+            "provider": "AWS",
+            "connection_status": "Failed",
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_fgt_integrations": [
+        {
+            "connection_status": "Failed",
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_security_insights": [
+        {
+            "domain": "acmedemo1hawkeye.com"
+        }
+    ],
+    "get_archived_issue_comments": [
+        {
+            "issue_id": "6732ffc328a4dc1e879ad6b4",
+            "comment_type": "System",
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_issue_comments": [
+        {
+            "issue_id": "64d37f3149b28f7c4ca64366",
+            "comment_type": "System",
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_tags": [
+        {
+            "scope": "System",
+            "name": null,
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_tag_by_id": [
+        {
+            "tag_id": "65dc5e1b602f3f41c84be144",
+            "linked_assets": false
+        }
+    ],
+    "get_groups": [
+        {
+            "scope": "System",
+            "name": null,
+            "page": 1,
+            "size": 10
+        }
+    ],
+    "get_group_by_id": [
+        {
+            "group_id": "66f3bc65bb95bfdd6cc6caf5",
+            "linked_assets": false
+        }
+    ]
+}
