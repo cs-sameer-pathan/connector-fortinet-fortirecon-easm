@@ -1,10 +1,10 @@
 {
     "config": [
         {
-            "server_url": "your_server_url",
-            "api_key": "your_api_key",
-            "org_id": "your_org_id",
-            "verify_ssl": true
+            "server_url": "server_url",
+            "api_key": "api_key",
+            "org_id": "org_id",
+            "verify_ssl": false
         }
     ],
     "get_leaked_credentials": [
@@ -99,7 +99,7 @@
     ],
     "get_domain_by_asset_id": [
         {
-            "asset_id": "6284d0ecdbb73af1cab5986d",
+            "asset_id": "6284d0ecdbb73af1cab5986f",
             "linked_assets": false
         }
     ],
@@ -211,7 +211,7 @@
     ],
     "get_archived_issue_comments": [
         {
-            "issue_id": "6732ffc328a4dc1e879ad6b4",
+            "issue_id": "671938d1112906e2b7a09c87",
             "comment_type": "System",
             "page": 1,
             "size": 10
@@ -251,6 +251,53 @@
         {
             "group_id": "66f3bc65bb95bfdd6cc6caf5",
             "linked_assets": false
+        }
+    ],
+    "update_archived_asset": [
+        {
+            "asset_id": "Required_asset_id(text)"
+        }
+    ],
+    "update_archived_issue": [
+        {
+            "issue_id": "Required_issue_id(text)"
+        }
+    ],
+    "update_issue_status": [
+        {
+            "issue_id": "Required_issue_id(text)",
+            "status": "ACTIVE"
+        }
+    ],
+    "update_asn_asset_status_to_false_positive": [
+        {
+            "asset_id": "Required_asset_id(text)"
+        }
+    ],
+    "update_prefix_asset_status_to_false_positive": [
+        {
+            "asset_id": "Required_asset_id(text)"
+        }
+    ],
+    "update_ip_asset_status_to_false_positive": [
+        {
+            "asset_id": "Required_asset_id(text)"
+        }
+    ],
+    "update_domain_asset_status_to_false_positive": [
+        {
+            "asset_id": "Required_asset_id(text)"
+        }
+    ],
+    "update_subdomain_asset_status_to_false_positive": [
+        {
+            "asset_id": "Required_asset_id(text)"
+        }
+    ],
+    "update_leaked_credential_status": [
+        {
+            "leaked_cred_id": "Required_leaked_cred_id(text)",
+            "status": "ACTIVE"
         }
     ]
 }

@@ -1583,4 +1583,75 @@ def test_get_group_by_id_invalid_group_id(valid_configuration_with_token, connec
     result = run_invalid_param_test(connector_details, operation_name='get_group_by_id', param_name='group_id',
                                     param_type='text', action_params=params_json['get_group_by_id'])
     assert result.get('status') == "failed"
-    
+
+
+@pytest.mark.update_archived_asset
+def test_update_archived_asset_invalid_asset_id(valid_configuration_with_token, connector_details, params_json):
+    set_report_metadata(connector_details, "Update Archived Asset", "Verify with invalid Asset ID")
+    result = run_invalid_param_test(connector_details, operation_name='update_archived_asset', param_name='asset_id',
+                                    param_type='text', action_params=params_json['update_archived_asset'])
+    assert result.get('status') == "failed"
+
+
+@pytest.mark.update_archived_issue
+def test_update_archived_issue_invalid_issue_id(valid_configuration_with_token, connector_details, params_json):
+    set_report_metadata(connector_details, "Update Archived Issue", "Verify with invalid Issue ID")
+    result = run_invalid_param_test(connector_details, operation_name='update_archived_issue', param_name='issue_id',
+                                    param_type='text', action_params=params_json['update_archived_issue'])
+    assert result.get('status') == "failed"
+
+
+@pytest.mark.update_issue_status
+def test_update_issue_status_invalid_issue_id(valid_configuration_with_token, connector_details, params_json):
+    set_report_metadata(connector_details, "Update Issue Status", "Verify with invalid Issue ID")
+    result = run_invalid_param_test(connector_details, operation_name='update_issue_status', param_name='issue_id',
+                                    param_type='text', action_params=params_json['update_issue_status'])
+    assert result.get('status') == "failed"
+
+
+@pytest.mark.update_asn_asset_status_to_false_positive
+def test_update_asn_asset_status_to_false_positive_invalid_asset_id(valid_configuration_with_token, connector_details, params_json):
+    set_report_metadata(connector_details, "Update ASN Asset To False Positive", "Verify with invalid Asset ID")
+    result = run_invalid_param_test(connector_details, operation_name='update_asn_asset_status_to_false_positive', param_name='asset_id',
+                                    param_type='text', action_params=params_json['update_asn_asset_status_to_false_positive'])
+    assert result.get('status') == "failed"
+
+
+@pytest.mark.update_prefix_asset_status_to_false_positive
+def test_update_prefix_asset_status_to_false_positive_invalid_asset_id(valid_configuration_with_token, connector_details, params_json):
+    set_report_metadata(connector_details, "Update IP Prefix Asset To False Positive", "Verify with invalid Asset ID")
+    result = run_invalid_param_test(connector_details, operation_name='update_prefix_asset_status_to_false_positive', param_name='asset_id',
+                                    param_type='text', action_params=params_json['update_prefix_asset_status_to_false_positive'])
+    assert result.get('status') == "failed"
+
+
+@pytest.mark.update_ip_asset_status_to_false_positive
+def test_update_ip_asset_status_to_false_positive_invalid_asset_id(valid_configuration_with_token, connector_details, params_json):
+    set_report_metadata(connector_details, "Update IP Asset To False Positive", "Verify with invalid Asset ID")
+    result = run_invalid_param_test(connector_details, operation_name='update_ip_asset_status_to_false_positive', param_name='asset_id',
+                                    param_type='text', action_params=params_json['update_ip_asset_status_to_false_positive'])
+    assert result.get('status') == "failed"
+
+
+@pytest.mark.update_domain_asset_status_to_false_positive
+def test_update_domain_asset_status_to_false_positive_invalid_asset_id(valid_configuration_with_token, connector_details, params_json):
+    set_report_metadata(connector_details, "Update Domain Asset To False Positive", "Verify with invalid Asset ID")
+    result = run_invalid_param_test(connector_details, operation_name='update_domain_asset_status_to_false_positive', param_name='asset_id',
+                                    param_type='text', action_params=params_json['update_domain_asset_status_to_false_positive'])
+    assert result.get('status') == "failed"
+
+
+@pytest.mark.update_subdomain_asset_status_to_false_positive
+def test_update_subdomain_asset_status_to_false_positive_invalid_asset_id(valid_configuration_with_token, connector_details, params_json):
+    set_report_metadata(connector_details, "Update Sub-Domain Asset To False Positive", "Verify with invalid Asset ID")
+    result = run_invalid_param_test(connector_details, operation_name='update_subdomain_asset_status_to_false_positive', param_name='asset_id',
+                                    param_type='text', action_params=params_json['update_subdomain_asset_status_to_false_positive'])
+    assert result.get('status') == "failed"
+
+
+@pytest.mark.update_leaked_credential_status
+def test_update_leaked_credential_status_invalid_leaked_cred_id(valid_configuration_with_token, connector_details, params_json):
+    set_report_metadata(connector_details, "Update Leaked Credential Status", "Verify with invalid Leaked Credential ID")
+    result = run_invalid_param_test(connector_details, operation_name='update_leaked_credential_status', param_name='leaked_cred_id',
+                                    param_type='text', action_params=params_json['update_leaked_credential_status'])
+    assert result.get('status') == "failed"

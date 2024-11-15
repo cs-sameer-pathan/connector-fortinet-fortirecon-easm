@@ -1,28 +1,13 @@
-#### What's Improved
+#### What's New
 - Added following actions
-  - Get Exposed Services
-  - Get Cloud Integrations
-  - Get FortiGate Integrations
-  - Get Security Insights
-  - Get Archived Issue Comments
-  - Get Issue Comments
-  - Get Tags
-  - Get Tag Details
-  - Get Groups
-  - Get Group Details
-- Added `Get Report Link` parameter in `Get Report` action.
-- Added new input parameters to the following action:
-  - Get Scan Statistics
-  - Generate Report
-  - Get Archived Assets
-  - Get Archived Issues
-  - Get Issue Summary
-  - Get Issues Discovered
-  - Get Asset ASNs
-  - Get Domains
-  - Get Prefixes
-  - Get IPs
-  - Get Subdomains
-  - Get Asset Statistics
-  - Get Leaked Credentials
-- Updated output schemas of all actions.
+  - Update Archived Issue
+  - Update Issue Status
+  - Update Archived Asset
+  - Update ASN status to False Positive
+  - Update Prefix status to False Positive
+  - Update IP status to False Positive
+  - Update Domain status to False Positive
+  - Update Sub-Domain status to False Positive
+  - Update Leaked Credential status
+
+- Updated/fixed output schemas of get_domains, get_breaches_by_id.

@@ -5,12 +5,11 @@ FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
 Copyright end """
 
 
-from .get_leaked_credentials import get_leaked_credentials
-from .get_scan_statistics import get_scan_statistics
+from .scan_statistics import get_scan_statistics
 from .issues import *
-from .get_asset_asns import *
-from .get_breaches import get_breaches, get_breaches_by_id
-from .generate_report import generate_report, get_report
+from .assets import *
+from .breaches import get_breaches, get_breaches_by_id, get_leaked_credentials, update_leaked_credential_status
+from .reports import generate_report, get_report
 
 operations = {
     "get_leaked_credentials": get_leaked_credentials,
@@ -44,6 +43,14 @@ operations = {
     "get_tags": get_tags,
     "get_tag_by_id": get_tags,
     "get_groups": get_groups,
-    "get_group_by_id": get_groups
-
+    "get_group_by_id": get_groups,
+    "update_archived_issue": update_archived_issue,
+    "update_issue_status": update_issue_status,
+    "update_archived_asset": update_archived_asset,
+    "update_asn_asset_status_to_false_positive": update_asn_asset_status_to_false_positive,
+    "update_prefix_asset_status_to_false_positive": update_prefix_asset_status_to_false_positive,
+    "update_ip_asset_status_to_false_positive": update_ip_asset_status_to_false_positive,
+    "update_domain_asset_status_to_false_positive": update_domain_asset_status_to_false_positive,
+    "update_subdomain_asset_status_to_false_positive": update_subdomain_asset_status_to_false_positive,
+    "update_leaked_credential_status": update_leaked_credential_status
 }

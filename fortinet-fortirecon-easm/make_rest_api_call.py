@@ -40,11 +40,11 @@ class MakeRestApiCall:
             if url is None:
                 url = '{0}{1}'.format(self.server_url, endpoint.format(org_id=self.org_id))
             headers = self.headers if flag else None
-            response = requests.request(method=method, url=url, headers=headers, data=data,
+            response = requests.request(method=method, url=url, headers=headers, json=data,
                                         params=params, verify=self.verify_ssl)
             try:
                 from connectors.debug_utils.curl_script import make_curl
-                make_curl(method, url, headers=headers, params=params, data=data, verify_ssl=self.verify_ssl)
+                make_curl(method, url, headers=headers, params=params, json=data, verify_ssl=self.verify_ssl)
             except Exception as err:
                 logger.debug(f"Error in curl utils: {str(err)}")
             if response.ok:
@@ -95,4 +95,3 @@ class MakeRestApiCall:
                 else:
                     data[k] = v
         return data
-

@@ -58,3 +58,11 @@ SEARCH_TYPE_MAPPING = {
     "Ends with": 'ends_with',
     "Wildcard": 'wildcard'
 }
+
+
+ISSUE_STATUS_MAPPING = {
+       "ACTIVE": "active",
+        "RESOLVED": "resolved",
+        "FALSE_POSITIVE": "false_positive",
+        "RISK_ACCEPTED": "risk_accepted"
+}

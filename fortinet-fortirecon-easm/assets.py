@@ -101,15 +101,46 @@ def get_security_insights(config, params):
     return get_multiple_records(config=config, endpoint=endpoint)
 
 
-def get_security_insights(config, params):
-    endpoint = "/easm/{org_id}/security_insights" + "/{0}/dns".format(params.get('domain'))
-    return get_multiple_records(config=config, endpoint=endpoint)
-
-
 def get_multiple_records(config, endpoint, params=None):
     MK = MakeRestApiCall(config=config)
     payload = MK.build_payload(params) if params else None
     response = MK.make_request(endpoint=endpoint, method="GET", params=payload)
     return response
 
+# Update status actions
 
+def update_archived_asset(config, params):
+    MK = MakeRestApiCall(config=config)
+    endpoint = "/easm/{org_id}"+"/archived_assets/{0}".format(params.pop("asset_id"))
+    response = MK.make_request(endpoint=endpoint, method="PATCH", params=params)
+    return response
+
+def update_asn_asset_status_to_false_positive(config, params):
+    MK = MakeRestApiCall(config=config)
+    endpoint = "/easm/{org_id}"+"/assets/asns/{0}".format(params.pop("asset_id"))
+    response = MK.make_request(endpoint=endpoint, method="PATCH", params=params)
+    return response
+
+def update_domain_asset_status_to_false_positive(config, params):
+    MK = MakeRestApiCall(config=config)
+    endpoint = "/easm/{org_id}"+"/assets/domains/{0}".format(params.pop("asset_id"))
+    response = MK.make_request(endpoint=endpoint, method="PATCH", params=params)
+    return response
+
+def update_ip_asset_status_to_false_positive(config, params):
+    MK = MakeRestApiCall(config=config)
+    endpoint = "/easm/{org_id}"+"/assets/ips/{0}".format(params.pop("asset_id"))
+    response = MK.make_request(endpoint=endpoint, method="PATCH", params=params)
+    return response
+
+def update_prefix_asset_status_to_false_positive(config, params):
+    MK = MakeRestApiCall(config=config)
+    endpoint = "/easm/{org_id}"+"/assets/prefixes/{0}".format(params.pop("asset_id"))
+    response = MK.make_request(endpoint=endpoint, method="PATCH", params=params)
+    return response
+
+def update_subdomain_asset_status_to_false_positive(config, params):
+    MK = MakeRestApiCall(config=config)
+    endpoint = "/easm/{org_id}"+"/assets/subdomains/{0}".format(params.pop("asset_id"))
+    response = MK.make_request(endpoint=endpoint, method="PATCH", params=params)
+    return response
