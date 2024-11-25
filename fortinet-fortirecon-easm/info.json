@@ -3,9 +3,10 @@
   "label": "Fortinet FortiRecon EASM",
   "description": "FortiRecon is a Digital Risk Protection Service (DRPS) product that provides an outside-the-network view to the risks posed to your enterprise.",
   "publisher": "Fortinet",
+  "contributor": "Ramkrushna Pathade",
   "cs_approved": true,
   "cs_compatible": true,
-  "version": "1.1.0",
+  "version": "1.2.0",
   "category": "Attack Surface Management",
   "help_online": "https://docs.fortinet.com/document/fortisoar/1.1.0/fortinet-fortirecon-easm/860/fortinet-fortirecon-easm-v1-1-0",
   "icon_small_name": "small.png",
@@ -1230,56 +1231,63 @@
       "visible": true,
       "enabled": true,
       "output_schema": {
-        "asset": "",
-        "assets_linked_count": "",
-        "cloud_metadata": {
-          "region": "",
-          "resource_id": "",
-          "resource_name": "",
-          "resource_type": "",
-          "cloud_provider": "",
-          "resource_group": "",
-          "customer_integration_name": ""
-        },
-        "confidence": "",
-        "domain_expiry": "",
-        "fgt_metadata": {
-          "virtual_ip": [
-            {
-              "name": "",
-              "protocol": "",
-              "mapped_ip": "",
-              "mapped_ports": "",
-              "external_ports": "",
-              "mapped_device_mac": "",
-              "mapped_device_os_name": ""
-            }
-          ],
-          "interface_id": "",
-          "integration_id": "",
-          "interface_name": "",
-          "integration_type": "",
-          "customer_integration_name": ""
-        },
-        "groups": [
+        "hits": [
           {
+            "asset": "",
+            "assets_linked_count": "",
+            "cloud_metadata": {
+              "region": "",
+              "resource_id": "",
+              "resource_name": "",
+              "resource_type": "",
+              "cloud_provider": "",
+              "resource_group": "",
+              "customer_integration_name": ""
+            },
+            "confidence": "",
+            "domain_expiry": "",
+            "fgt_metadata": {
+              "virtual_ip": [
+                {
+                  "name": "",
+                  "protocol": "",
+                  "mapped_ip": "",
+                  "mapped_ports": "",
+                  "external_ports": "",
+                  "mapped_device_mac": "",
+                  "mapped_device_os_name": ""
+                }
+              ],
+              "interface_id": "",
+              "integration_id": "",
+              "interface_name": "",
+              "integration_type": "",
+              "customer_integration_name": ""
+            },
+            "groups": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
             "id": "",
-            "name": ""
+            "ip_address": "",
+            "nameserver": [],
+            "original_ip": [],
+            "ports": [],
+            "ssl_cert_org": "",
+            "tags": [
+              {
+                "id": "",
+                "name": ""
+              }
+            ],
+            "technologies": []
           }
         ],
-        "id": "",
-        "ip_address": "",
-        "nameserver": [],
-        "original_ip": [],
-        "ports": [],
-        "ssl_cert_org": "",
-        "tags": [
-          {
-            "id": "",
-            "name": ""
-          }
-        ],
-        "technologies": []
+        "page": "",
+        "size": "",
+        "total": ""
       },
       "parameters": [
         {
@@ -2794,7 +2802,6 @@
         "details": "",
         "added_on": "",
         "has_password": "",
-        "affected_domains": "",
         "compromised_data": "",
         "compromised_accounts": ""
       },
@@ -3711,6 +3718,261 @@
           "value": false,
           "tooltip": "Select to retrieve the linked assets.",
           "description": "(Optional) Select to retrieve linked assets. By default it is unchecked and set to False."
+        }
+      ]
+    },
+    {
+      "operation": "update_archived_asset",
+      "title": "Update Archived Asset",
+      "annotation": "update_archived_asset",
+      "description": "Update the given asset ID status to active. It removes the given asset from archived assets but its linked assets will still be there in the archived.Asset will be shown on the profile settings seeds section immediately. However, asset will get scanned again within 24 hours and will be shown on the active assets, if any issues found during scan those will be shown on the issues page.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "message": ""
+      },
+      "parameters": [
+        {
+          "name": "asset_id",
+          "title": "Asset ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the archived asset ID to update the status to active.",
+          "tooltip": "Specify the archived asset ID to update the status to active."
+        }
+      ]
+    },
+    {
+      "operation": "update_archived_issue",
+      "title": "Mark Archived Issue as Active",
+      "annotation": "update_archived_issue",
+      "description": "Updates the status of the archived security issue record to active.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "message": ""
+      },
+      "parameters": [
+        {
+          "name": "issue_id",
+          "title": "Issue ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the archived issue ID to update the status to active.",
+          "tooltip": "Specify the archived issue ID to update the status to active."
+        }
+      ]
+    },
+    {
+      "operation": "update_issue_status",
+      "title": "Update Issue Status",
+      "annotation": "update_issue_status",
+      "description": "Updates the status of the Security issue record.\n If the given issue status is set to false_positive or risk_accepted then issue will be visible in the archived issues. You can choose from ACTIVE, RESOLVED, FALSE_POSITIVE, RISK_ACCEPTED.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "message": ""
+      },
+      "parameters": [
+        {
+          "name": "issue_id",
+          "title": "Issue ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the security issue ID to update the status.",
+          "tooltip": "Specify the security issue ID to update the status."
+        },
+        {
+          "title": "Status",
+          "name": "status",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the status to update the security issue.",
+          "description": "Specify the status to update the security issue. You can choose from ACTIVE, RESOLVED, FALSE_POSITIVE, RISK_ACCEPTED.",
+          "options": [
+            "ACTIVE",
+            "RESOLVED",
+            "FALSE_POSITIVE",
+            "RISK_ACCEPTED"
+          ]
+        }
+      ]
+    },
+    {
+      "operation": "update_asn_asset_status_to_false_positive",
+      "title": "Update ASN Asset To False Positive",
+      "annotation": "update_asn_asset_status_to_false_positive",
+      "description": "This API endpoint mark the given asset ID as false positive,\n it will also mark all its linked assets to false positive. \n Once assets are marked as false positive then those will be visible in the archived assets.\n All the issues which are found on the given asset will also get removed/deleted from the issues.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "message": ""
+      },
+      "parameters": [
+        {
+          "name": "asset_id",
+          "title": "Asset ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the ASN asset ID to update it to False Positive.",
+          "tooltip": "Specify the ASN asset ID to update it to False Positive."
+        }
+      ]
+    },
+    {
+      "operation": "update_prefix_asset_status_to_false_positive",
+      "title": "Update IP Prefix Asset To False Positive",
+      "annotation": "update_prefix_asset_status_to_false_positive",
+      "description": "This API endpoint mark the given asset ID as false positive,\n it will also mark all its linked assets to false positive. \n Once assets are marked as false positive then those will be visible in the archived assets.\n All the issues which are found on the given asset will also get removed/deleted from the issues.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "message": ""
+      },
+      "parameters": [
+        {
+          "name": "asset_id",
+          "title": "Asset ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the Prefix asset ID to update it to False Positive.",
+          "tooltip": "Specify the Prefix asset ID to update it to False Positive."
+        }
+      ]
+    },
+    {
+      "operation": "update_ip_asset_status_to_false_positive",
+      "title": "Update IP Asset To False Positive",
+      "annotation": "update_ip_asset_status_to_false_positive",
+      "description": "This API endpoint mark the given asset ID as false positive,\n it will also mark all its linked assets to false positive. \n Once assets are marked as false positive then those will be visible in the archived assets.\n All the issues which are found on the given asset will also get removed/deleted from the issues.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "message": ""
+      },
+      "parameters": [
+        {
+          "name": "asset_id",
+          "title": "Asset ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the IP asset ID to update it to False Positive.",
+          "tooltip": "Specify the IP asset ID to update it to False Positive."
+        }
+      ]
+    },
+    {
+      "operation": "update_domain_asset_status_to_false_positive",
+      "title": "Update Domain Asset To False Positive",
+      "annotation": "update_domain_asset_status_to_false_positive",
+      "description": "This API endpoint mark the given asset ID as false positive,\n it will also mark all its linked assets to false positive. \n Once assets are marked as false positive then those will be visible in the archived assets.\n All the issues which are found on the given asset will also get removed/deleted from the issues.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "message": ""
+      },
+      "parameters": [
+        {
+          "name": "asset_id",
+          "title": "Asset ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the Domain asset ID to update it to False Positive.",
+          "tooltip": "Specify the Domain asset ID to update it to False Positive."
+        }
+      ]
+    },
+    {
+      "operation": "update_subdomain_asset_status_to_false_positive",
+      "title": "Update Sub-Domain Asset To False Positive",
+      "annotation": "update_subdomain_asset_status_to_false_positive",
+      "description": "This API endpoint mark the given asset ID as false positive,\n it will also mark all its linked assets to false positive. \n Once assets are marked as false positive then those will be visible in the archived assets.\n All the issues which are found on the given asset will also get removed/deleted from the issues.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "message": ""
+      },
+      "parameters": [
+        {
+          "name": "asset_id",
+          "title": "Asset ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the Sub-Domain asset ID to update it to False Positive.",
+          "tooltip": "Specify the Sub-Domain asset ID to update it to False Positive."
+        }
+      ]
+    },
+    {
+      "operation": "update_leaked_credential_status",
+      "title": "Update Leaked Credential Status",
+      "annotation": "update_leaked_credential_status",
+      "description": "Updates the status of the Leaked Credential record.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "output_schema": {
+        "message": ""
+      },
+      "parameters": [
+        {
+          "name": "leaked_cred_id",
+          "title": "Leaked Credential ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify the Leaked Credential ID to update the status.",
+          "tooltip": "Specify the Leaked Credential ID to update the status."
+        },
+        {
+          "title": "Status",
+          "name": "status",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "tooltip": "Specify the status to update the Leaked Credential.",
+          "description": "Specify the status to update the Leaked Credential. You can choose from ACTIVE, RESOLVED.",
+          "options": [
+            "ACTIVE",
+            "RESOLVED"
+          ]
         }
       ]
     }

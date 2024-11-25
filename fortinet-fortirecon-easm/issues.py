@@ -3,9 +3,12 @@ Copyright (C) 2008 - 2024 Fortinet Inc.
 All rights reserved.
 FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
 Copyright end """
-
 from .make_rest_api_call import *
-from .constants import STATUS_MAPPING, SEVERITY_MAPPING, BUCKET_ID_MAPPING, ASSET_TYPE_MAPPING
+from .constants import (STATUS_MAPPING,
+                        SEVERITY_MAPPING,
+                        BUCKET_ID_MAPPING,
+                        ASSET_TYPE_MAPPING,
+                        ISSUE_STATUS_MAPPING)
 
 
 def get_issues_discovered(config, params):
@@ -121,4 +124,22 @@ def get_groups(config, params):
         endpoint += f"/{group_id}"
     payload = MK.build_payload(params)
     response = MK.make_request(endpoint=endpoint, method="GET", params=payload)
+    return response
+
+
+# Update status actions
+
+def update_archived_issue(config, params):
+    MK = MakeRestApiCall(config=config)
+    endpoint = "/easm/{org_id}"+"/archived_issues/{0}".format(params.pop("issue_id"))
+    response = MK.make_request(endpoint=endpoint, method="PATCH", params=params)
+    return response
+
+def update_issue_status(config, params):
+    status = params.pop("status")
+    payload = {"status": ISSUE_STATUS_MAPPING.get(status)}
+    MK = MakeRestApiCall(config=config)
+    endpoint = "/easm/{org_id}"+"/issues/{0}".format(params.pop("issue_id"))
+    print(endpoint)
+    response = MK.make_request(endpoint=endpoint, method="PATCH", params=params, data=payload)
     return response
