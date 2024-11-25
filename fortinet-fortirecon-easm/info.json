@@ -3748,7 +3748,7 @@
     },
     {
       "operation": "update_archived_issue",
-      "title": "Update Archived Issue",
+      "title": "Mark Archived Issue as Active",
       "annotation": "update_archived_issue",
       "description": "Updates the status of the archived security issue record to active.",
       "category": "investigation",
@@ -3775,7 +3775,7 @@
       "operation": "update_issue_status",
       "title": "Update Issue Status",
       "annotation": "update_issue_status",
-      "description": "Updates the status of the Security issue record.\n If the given issue status is set to false_positive or risk_accepted then issue will be visible in the archived issues.",
+      "description": "Updates the status of the Security issue record.\n If the given issue status is set to false_positive or risk_accepted then issue will be visible in the archived issues. You can choose from ACTIVE, RESOLVED, FALSE_POSITIVE, RISK_ACCEPTED.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
